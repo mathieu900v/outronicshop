@@ -7,8 +7,11 @@ VOYER Mathieu
 ## L’objectif est de développer un site E-commerce avec gestion de clients, de commandes et d’expéditions.
 
 **Frameworks utilisés** : Angular JS Front-end, Asp.NET Core Back-end.
+
 **OS** : Ubuntu-server
+
 **Serveurs utilisés** : DELL-R220 avec redondance RAID 1.
+
 **SSL** : Let's Encrypt v3.
 
 ### Fonctionnalités nécessaires :
