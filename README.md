@@ -4,15 +4,29 @@
 OUTRONIC SAS
 VOYER Mathieu
 
-## L’objectif est de développer un site E-commerce avec gestion de clients, de commandes et d’expéditions.
+**L’objectif est de développer un site E-commerce avec gestion de clients, de commandes et d’expéditions.**
 
-**Frameworks utilisés** : Angular JS Front-end, Asp.NET Core Back-end.
+## BackEnd (API Web)
 
-**OS** : Ubuntu-server
+* Utilisation d'ASP.NET Core (.NET 5, C# 9)
+* Utilisation de la Dependency Injection (Services, Singleton, Transient)
+* Authentification JWT, OAuth2.0
+* Gestion des paiements (Paypal, CB)
+* Cryptage données sensibles en SHA512 (Ip, Mot de passe)
+* Mise en cache pour l’optimisation
 
-**Serveurs utilisés** : DELL-R220 avec redondance RAID 1.
+## FrontEnd
 
-**SSL** : Let's Encrypt v3.
+* Angular 11
+* Let's Encrypt v3
+
+## Hébergement et stockage
+
+* Serveur DELL-R220
+* Redondance RAID 1
+* Ubuntu-server 20.04 LTS
+
+---
 
 ### Fonctionnalités nécessaires :
 
