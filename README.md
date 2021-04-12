@@ -6,10 +6,11 @@ VOYER Mathieu
 
 **L’objectif est de développer un site E-commerce avec gestion de clients, de commandes et d’expéditions.**
 
+## [Compte-rendu journalier du stage](/Organisation/journalier.md)
 
+---
 
-![FrontEnd](/Organisation/FrontEnd.png)
-![Backend](/Organisation/BackEnd.png)
+# Feuille de route
 
 ## BackEnd (API Web)
 
