@@ -6,8 +6,10 @@ VOYER Mathieu
 
 **L’objectif est de développer un site E-commerce avec gestion de clients, de commandes et d’expéditions.**
 
-![Backend](/utilities/FrontEnd.png)
-![Backend](/utilities/BackEnd.png)
+
+
+![FrontEnd](/Organisation/FrontEnd.png)
+![Backend](/Organisation/BackEnd.png)
 
 ## BackEnd (API Web)
 
