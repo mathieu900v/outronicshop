@@ -13,6 +13,8 @@
 - Début du Wireframe (Header, Footer, page de produit et page des catégories) -> [Wireframe du site](https://whimsical.com/outronic-shop-GbDf55uoJrajhd3KwUpWHw)
 
 ### Mardi 13/04
+- Wireframe qui avance beaucoup
+- Début du MCD
 
 ### Mercredi 14/04
 - Réunion 14h
