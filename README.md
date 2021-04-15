@@ -14,8 +14,8 @@ VOYER Mathieu
 
 ## BackEnd (API Web)
 
-* Utilisation d'ASP.NET Core (.NET 5, C# 9)
-* Utilisation de la Dependency Injection (Services, Singleton, Transient)
+* Node JS avec Express
+* PostgreSQL
 * Authentification JWT, OAuth2.0
 * Gestion des paiements (Paypal, CB)
 * Cryptage données sensibles en SHA512 (Ip, Mot de passe)
@@ -23,7 +23,7 @@ VOYER Mathieu
 
 ## FrontEnd
 
-* Angular 11
+* React
 * Let's Encrypt v3
 
 ## Hébergement et stockage
