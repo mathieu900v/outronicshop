@@ -13,13 +13,18 @@
 - Début du Wireframe (Header, Footer, page de produit et page des catégories) -> [Wireframe du site](https://whimsical.com/outronic-shop-GbDf55uoJrajhd3KwUpWHw)
 
 ### Mardi 13/04
-- Wireframe qui avance beaucoup
+- Wireframe Catégories et pages Produits
 - Début du MCD
 
 ### Mercredi 14/04
+- Fin du [MCD](MCD.svg) version 1
+- Wireframe Compte et Connexion
 - Réunion 14h
 
 ### Jeudi 15/04
+- PostgreSQL installation et mise en place
+- Node.js installation et mise en place
+- Début modèles
 
 ### Vendredi 16/04
 
