@@ -4,14 +4,16 @@ module.exports = {
 	
 	get_all: (req, res, next) => {
 		let where = {};
-		if (req.query.type) {
-			where.type = req.query.type;
+		if (req.query.name) {
+			where.name = {
+				[Sequelize.Op.like]: '%'+req.query.name+'%'
+			};
 		}
-		return req.person.getMailAddresses({
-			order: [ 'type' ],
+		return db.Brand.findAll({
+			order: [ 'name' ],
 			where
 		})
-		.then((mailAddresses) => res.json(mailAddresses))
+		.then((people) => res.json(people))
 		.catch((err) => next(err));
 	},
 	
@@ -32,11 +34,12 @@ module.exports = {
 
 	create: (req, res, next) => {
 		const data = {
-			address: req.body.address || '',
-			type: req.body.type || 'home'
+			id: req.body.address || '',
+			name: req.body.name || '',
+			image: req.body.image || ''
 		};
-		return req.person.createMailAddress(data)
-		.then((mailAddress) => res.json(mailAddress))
+		return db.Brand.create(data)
+		.then((brand) => res.json(brand))
 		.catch((err) => next(err));
 	},
 
