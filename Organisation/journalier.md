@@ -23,9 +23,20 @@
 
 ### Jeudi 15/04
 - PostgreSQL installation et mise en place
-- Node.js installation et mise en place
-- Début modèles
 
 ### Vendredi 16/04
+- Node.js installation et mise en place
+- début modèle, controlleur et routes de Brand
+- Réunion 14h
 
+---
+### Lundi 19/04
+- Difficultés avec Node et remise en question du framework
+- Début liste des routes
+### Mardi 20/04
+- Réflexions sur le changement de Framework -> ASP.NET Core
+- Swagger fonctionnel sur OpenAPI
+### Mercredi 21/04
+### Jeudi 22/04
+### Vendredi 23/04
 ---

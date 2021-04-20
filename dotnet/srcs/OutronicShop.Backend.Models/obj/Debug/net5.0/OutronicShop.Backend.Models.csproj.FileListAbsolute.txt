@@ -1,0 +1,12 @@
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\bin\Debug\net5.0\OutronicShop.Backend.Models.deps.json
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\bin\Debug\net5.0\OutronicShop.Backend.Models.dll
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\bin\Debug\net5.0\ref\OutronicShop.Backend.Models.dll
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\bin\Debug\net5.0\OutronicShop.Backend.Models.pdb
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\OutronicShop.Backend.Models.csprojAssemblyReference.cache
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\OutronicShop.Backend.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\OutronicShop.Backend.Models.AssemblyInfoInputs.cache
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\OutronicShop.Backend.Models.AssemblyInfo.cs
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\OutronicShop.Backend.Models.csproj.CoreCompileInputs.cache
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\OutronicShop.Backend.Models.dll
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\ref\OutronicShop.Backend.Models.dll
+C:\Users\mathi\outronicshop\dotnet\srcs\OutronicShop.Backend.Models\obj\Debug\net5.0\OutronicShop.Backend.Models.pdb

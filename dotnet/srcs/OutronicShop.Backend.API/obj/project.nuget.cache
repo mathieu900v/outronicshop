@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "r1JuwAX2Q4snXqa7wX8nme/yhz8c/XSM3DQXiJX6r15cIZG5uV/V9IAc3U37gGFxfrHbk/RePZ9Yy3ftB8Wcog==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.API\\OutronicShop.Backend.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mathi\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.2\\swashbuckle.aspnetcore.swagger.6.1.2.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.1.2\\swashbuckle.aspnetcore.swaggergen.6.1.2.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.1.2\\swashbuckle.aspnetcore.swaggerui.6.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
