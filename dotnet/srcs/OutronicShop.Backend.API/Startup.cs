@@ -5,9 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OutronicShop.Backend.API.Extensions;
+using OutronicShop.Backend.Database.Brand;
+using OutronicShop.Backend.Database.Context;
+using OutronicShop.Backend.Domain.Brand;
 
 namespace OutronicShop.Backend.API
 {
@@ -18,6 +25,32 @@ namespace OutronicShop.Backend.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
+            services.AddDbContext<WebContext>((provider, builder) =>
+            {
+                string dbConfig = provider.GetRequiredService<DatabaseConfiguration>().ToString();
+                builder.UseNpgsql(dbConfig).ConfigureWarnings(s =>
+                    s.Log((RelationalEventId.CommandExecuting, LogLevel.Debug),
+                        (RelationalEventId.CommandExecuted, LogLevel.Debug)));
+            });
+            
+            services.AddDbContextFactory<WebContext>((provider, builder) =>
+            {
+                string dbConfig = provider.GetRequiredService<DatabaseConfiguration>().ToString();
+                builder.UseNpgsql(dbConfig).ConfigureWarnings(s =>
+                    s.Log((RelationalEventId.CommandExecuting, LogLevel.Debug),
+                        (RelationalEventId.CommandExecuted, LogLevel.Debug)));
+            });
+
+            services.AddSingleton<DatabaseConfiguration>();
+            
+            /*
+             * Register Brand
+             */
+            services.TryAddMappedAsyncUuidRepository<BrandEntity, BrandDto>();
+            services.AddTransient<IBrandDao, BrandDao>();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "OutronicShop.Api", Version = "v1"});

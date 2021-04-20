@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutronicShop.Backend.API", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutronicShop.Backend.Models", "srcs\OutronicShop.Backend.Models\OutronicShop.Backend.Models.csproj", "{3CE67764-409F-4E7D-BD69-7B0BA7A296F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutronicShop.Backend.Database", "srcs\OutronicShop.Backend.Database\OutronicShop.Backend.Database.csproj", "{619ADFB7-9DC0-41FB-B17A-B786A6AD32E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutronicShop.Backend.Domain", "srcs\OutronicShop.Backend.Domain\OutronicShop.Backend.Domain.csproj", "{FFA15369-DC3E-45AF-8C88-9317F6DCE89C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{3CE67764-409F-4E7D-BD69-7B0BA7A296F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CE67764-409F-4E7D-BD69-7B0BA7A296F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CE67764-409F-4E7D-BD69-7B0BA7A296F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{619ADFB7-9DC0-41FB-B17A-B786A6AD32E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{619ADFB7-9DC0-41FB-B17A-B786A6AD32E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{619ADFB7-9DC0-41FB-B17A-B786A6AD32E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{619ADFB7-9DC0-41FB-B17A-B786A6AD32E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFA15369-DC3E-45AF-8C88-9317F6DCE89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFA15369-DC3E-45AF-8C88-9317F6DCE89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFA15369-DC3E-45AF-8C88-9317F6DCE89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFA15369-DC3E-45AF-8C88-9317F6DCE89C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

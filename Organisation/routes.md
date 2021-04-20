@@ -2,3 +2,6 @@
 
 
 
+### Accueil /
+GET /
+Produits phares de isHighlighted

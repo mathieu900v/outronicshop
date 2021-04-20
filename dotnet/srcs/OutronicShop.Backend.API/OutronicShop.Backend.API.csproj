@@ -5,10 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\OutronicShop.Backend.Database\OutronicShop.Backend.Database.csproj" />
       <ProjectReference Include="..\OutronicShop.Backend.Models\OutronicShop.Backend.Models.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0-preview3" />
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.2" />
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.2" />
     </ItemGroup>

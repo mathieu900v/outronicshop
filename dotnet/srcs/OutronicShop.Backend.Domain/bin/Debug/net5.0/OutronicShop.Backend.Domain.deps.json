@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "OutronicShop.Backend.Domain/1.0.0": {
+        "runtime": {
+          "OutronicShop.Backend.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "OutronicShop.Backend.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
