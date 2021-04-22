@@ -41,6 +41,32 @@ namespace OutronicShop.Backend.Database.Migrations
 
                     b.ToTable("brand", "products");
                 });
+
+            modelBuilder.Entity("OutronicShop.Backend.Database.Category.CategoryEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("IdParent")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("category", "products");
+                });
 #pragma warning restore 612, 618
         }
     }

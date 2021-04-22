@@ -43,7 +43,7 @@ namespace OutronicShop.Backend.API.Controllers
             BrandDto brandDto = await _brandDao.GetBrandByNameAsync(form.Name);
             if (brandDto == null)
             {
-                return BadRequest("Brand name doesn't exist");
+                return NotFound("Brand name doesn't exist");
             }
 
             await _brandDao.DeleteByIdAsync(brandDto.Id);

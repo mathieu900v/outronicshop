@@ -1,15 +1,16 @@
 import {BrandPage} from './BrandPage'
 
+
 export default function Home({ brands }) {
   return(
     <ul>
         {brands.map((brand) => (
-            <li>
-                <ul>
-                    <li>{brand.name}</li>
-                    <li>{brand.id}</li>
-                </ul>
-            </li>
+          <ul key={brand.id} className="bg-green">
+            <li>{brand.name}</li>
+            <li>{brand.imgUrl}</li>
+            <li>{brand.id}</li>
+            <br/>
+          </ul>
         ))}
       </ul>
   )

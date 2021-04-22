@@ -13,8 +13,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OutronicShop.Backend.API.Extensions;
 using OutronicShop.Backend.Database.Brand;
+using OutronicShop.Backend.Database.Category;
 using OutronicShop.Backend.Database.Context;
 using OutronicShop.Backend.Domain.Brand;
+using OutronicShop.Backend.Domain.Category;
 
 namespace OutronicShop.Backend.API
 {
@@ -24,6 +26,7 @@ namespace OutronicShop.Backend.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
 
 
@@ -50,7 +53,14 @@ namespace OutronicShop.Backend.API
              */
             services.TryAddMappedAsyncUuidRepository<BrandEntity, BrandDto>();
             services.AddTransient<IBrandDao, BrandDao>();
+
+            /*
+             * Register Category
+             */
+            services.TryAddMappedAsyncUuidRepository<CategoryEntity, CategoryDto>();
+            services.AddTransient<ICategoryDao, CategoryDao>();
             
+            //SwaggerGen
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "OutronicShop.Api", Version = "v1"});
@@ -64,6 +74,9 @@ namespace OutronicShop.Backend.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
 
             app.UseHttpsRedirection();
             app.UseSwagger();
