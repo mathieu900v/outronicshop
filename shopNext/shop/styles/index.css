@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
+
+.filter-gray {
+    filter: invert(46%) sepia(12%) saturate(472%) hue-rotate(182deg) brightness(93%) contrast(85%);
+}
+.filter-gray-hover {
+    filter: invert(46%) sepia(12%) saturate(472%) hue-rotate(182deg) brightness(93%) contrast(85%);
+}
+.filter-gray-hover:hover {
+    filter: invert(55%) sepia(10%) saturate(2614%) hue-rotate(215deg) brightness(104%) contrast(101%);
+}
+
 @tailwind utilities;

@@ -37,6 +37,12 @@
 - Réflexions sur le changement de Framework -> ASP.NET Core
 - Swagger fonctionnel sur OpenAPI
 ### Mercredi 21/04
+- Brands en Backend ASP.NET Core
 ### Jeudi 22/04
+- Categories et Products en Backend
 ### Vendredi 23/04
+- Début du React vace Next.JS Agile
 ---
+### Lundi 26/04
+- Routes, Layouts et et Affichage pour Brands [Aperçu](BrandsWebPage.png)
+### Mardi 27/04

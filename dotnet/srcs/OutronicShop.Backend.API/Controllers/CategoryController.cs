@@ -8,7 +8,7 @@ using OutronicShop.Backend.Models.Category;
 
 namespace OutronicShop.Backend.API.Controllers
 {
-    [Route("api/category")]
+    [Route("api/categories")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace OutronicShop.Backend.API.Controllers
             _categoryDao = categoryDao;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategorysAsync()
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategoriesAsync()
         {
             return Ok(await _categoryDao.GetAllAsync());
         }
@@ -38,10 +38,10 @@ namespace OutronicShop.Backend.API.Controllers
         [HttpPost("delete")]
         public async Task<IActionResult> DeleteCategoryAsync([FromBody] CategoryDeletionForm form)
         {
-            CategoryDto categoryDto = await _categoryDao.GetCategoryByNameAsync(form.Title);
+            CategoryDto categoryDto = await _categoryDao.GetByIdAsync(form.Id);
             if (categoryDto == null)
             {
-                return NotFound("Category title doesn't exist");
+                return NotFound("Category ID doesn't exist");
             }
 
             await _categoryDao.DeleteByIdAsync(categoryDto.Id);

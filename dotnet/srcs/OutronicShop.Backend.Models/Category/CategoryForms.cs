@@ -14,7 +14,7 @@ namespace OutronicShop.Backend.Models.Category
     }
     public class CategoryDeletionForm
     {
-        [Required(ErrorMessage = "Title can't be null")]
-        public string Title { get; set; }
+        [Required(ErrorMessage = "ID can't be null")]
+        public Guid Id { get; set; }
     }
 }

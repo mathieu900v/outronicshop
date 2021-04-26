@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace OutronicShop.Backend.Models.Brand
 {
@@ -11,7 +12,7 @@ namespace OutronicShop.Backend.Models.Brand
     }
     public class BrandDeletionForm
     {
-        [Required(ErrorMessage = "Name can't be null")]
-        public string Name { get; set; }
+        [Required(ErrorMessage = "Id can't be null")]
+        public Guid Id { get; set; }
     }
 }

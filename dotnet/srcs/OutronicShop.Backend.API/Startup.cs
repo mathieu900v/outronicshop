@@ -15,8 +15,10 @@ using OutronicShop.Backend.API.Extensions;
 using OutronicShop.Backend.Database.Brand;
 using OutronicShop.Backend.Database.Category;
 using OutronicShop.Backend.Database.Context;
+using OutronicShop.Backend.Database.Product;
 using OutronicShop.Backend.Domain.Brand;
 using OutronicShop.Backend.Domain.Category;
+using OutronicShop.Backend.Domain.Product;
 
 namespace OutronicShop.Backend.API
 {
@@ -59,6 +61,12 @@ namespace OutronicShop.Backend.API
              */
             services.TryAddMappedAsyncUuidRepository<CategoryEntity, CategoryDto>();
             services.AddTransient<ICategoryDao, CategoryDao>();
+            
+            /*
+             * Register Product
+             */
+            services.TryAddMappedAsyncUuidRepository<ProductEntity, ProductDto>();
+            services.AddTransient<IProductDao, ProductDao>();
             
             //SwaggerGen
             services.AddSwaggerGen(c =>

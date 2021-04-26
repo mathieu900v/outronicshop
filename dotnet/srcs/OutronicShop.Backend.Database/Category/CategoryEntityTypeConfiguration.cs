@@ -8,6 +8,9 @@ namespace OutronicShop.Backend.Database.Category
         public void Configure(EntityTypeBuilder<CategoryEntity> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasMany(x => x.ProductEntities)
+                .WithOne(x => x.Category)
+                .HasForeignKey(x => x.CategoryId);
         }
     }
 }

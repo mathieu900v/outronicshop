@@ -40,10 +40,10 @@ namespace OutronicShop.Backend.API.Controllers
         [HttpPost("delete")]
         public async Task<IActionResult> DeleteBrandAsync([FromBody] BrandDeletionForm form)
         {
-            BrandDto brandDto = await _brandDao.GetBrandByNameAsync(form.Name);
+            BrandDto brandDto = await _brandDao.GetByIdAsync(form.Id);
             if (brandDto == null)
             {
-                return NotFound("Brand name doesn't exist");
+                return NotFound("Brand ID doesn't exist");
             }
 
             await _brandDao.DeleteByIdAsync(brandDto.Id);
