@@ -1,7 +1,7 @@
 import AdminLayout from '../layouts/admin.layout';
 import { useRouter } from 'next/router';
-import * as ApiClient from '../../modules/api/client-api';
-import * as Routes from '../../modules/routes/admin-routes';
+import ApiClient from '../../modules/api/client-api';
+import Routes from '../../modules/routes/admin-routes';
 
 export default function CreateBrandPage({ brand }) {
     const router = useRouter();

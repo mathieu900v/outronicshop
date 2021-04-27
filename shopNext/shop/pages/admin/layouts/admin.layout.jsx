@@ -3,9 +3,11 @@ import NavBar from '../components/navbar.component';
 
 export default function AdminLayout({ children }) {
   return (
-      <div class="flex-col">
+      <div className="flex flex-row">
         <NavBar/>
-        {children}
+        <div className="flex-grow">
+          {children}
+        </div>
       </div>
   )
 }

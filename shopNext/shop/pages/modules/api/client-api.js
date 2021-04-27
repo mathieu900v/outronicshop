@@ -1,24 +1,25 @@
 const baseUrl = "http://localhost:5001/api";
 const defaultUuid = "00000000-0000-0000-0000-000000000000";
 
-async function createDefaultGetRequest(url, data) {
-  try {
-    let query = new URLSearchParams(data);
-    let fullUrl = `${url}?${query}`;
-    console.log(`[API] GET: ${fullUrl}`);
-    let response = await fetch(fullUrl, {
-      method: 'GET',
-      headers: { 'Access-Control-Allow-Origin': '*',
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json' },
-    });
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-}
 
-async function createDefaultPostRequest(url, form, asJson) {
+const ApiClient = {
+  createDefaultGetRequest: async (url, data) => {
+    try {
+      let query = new URLSearchParams(data);
+      let fullUrl = `${url}?${query}`;
+      console.log(`[API] GET: ${fullUrl}`);
+      let response = await fetch(fullUrl, {
+        method: 'GET',
+        headers: { 'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json' },
+      });
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  createDefaultPostRequest: async (url, form, asJson) => {
     try {
       let fullUrl = `${url}`;
       console.log(`[API] POST: ${fullUrl}`);
@@ -38,23 +39,65 @@ async function createDefaultPostRequest(url, form, asJson) {
     } catch (error) {
       console.error(error);
     }
-  }
+  },
 
-/**
- * Get all the products from the api
- * @returns {Response} api response
- */
-export async function getBrandsAsync() {
+  /************************************************************
+ * 
+ *                          BRANDS
+ * 
+ ************************************************************/
+  /**
+   * Get all the products from the api
+   * @returns {Response} api response
+   */
+  getBrandsAsync: async () => {
   let data = {};
-  return await createDefaultGetRequest(`${baseUrl}/brands`, data);
+  return await ApiClient.createDefaultGetRequest(`${baseUrl}/brands`, data);
+  },
+  /**
+   * Delete all brand by id
+   * @param {uuid} id
+   * @returns {Response} api response
+   */
+  deleteBrandByIdAsync: async (id, asJson) => {    
+    return await ApiClient.createDefaultPostRequest(`${baseUrl}/brands/delete`, {id}, asJson);
+  },
+  /**
+   * Count all the brands
+   * @returns {Response} api response
+   */
+  countBrandsAsync: async () => {
+    let data = {};
+    return await ApiClient.createDefaultGetRequest(`${baseUrl}/brands/count`, data, true);
+  },
+
+  /************************************************************
+   * 
+   *                        CATEGORIES
+   * 
+   ************************************************************/
+
+  /**
+   * Count all the categories
+   * @returns {Response} api response
+   */
+  countCategoriesAsync: async () =>  {
+    let data = {};
+    return await ApiClient.createDefaultGetRequest(`${baseUrl}/categories/count`, data, true);
+  },
+  /************************************************************
+   * 
+   *                         PRODUCTS
+   * 
+   ************************************************************/
+  /**
+   * Count all the products
+   * @returns {Response} api response
+   */
+  countProductsAsync: async () => {
+    let data = {};
+    return await ApiClient.createDefaultGetRequest(`${baseUrl}/products/count`, data, true);
+  },
 }
 
-
-/**
- * Delete all brand by id
- * @param {uuid} id
- * @returns {Response} api response
- */
- export async function deleteBrandByIdAsync(id, asJson) {    
-    return await createDefaultPostRequest(`${baseUrl}/brands/delete`, {id}, asJson);
-  }
+export default ApiClient;

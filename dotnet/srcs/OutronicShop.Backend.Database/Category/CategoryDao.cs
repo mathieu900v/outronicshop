@@ -31,6 +31,7 @@ namespace OutronicShop.Backend.Database.Category
         public async Task<IEnumerable<CategoryDto>> SaveAsync(IReadOnlyList<CategoryDto> objs) => await _repository.SaveAsync(objs);
         public async Task DeleteByIdAsync(Guid id) => await _repository.DeleteByIdAsync(id);
         public async Task DeleteByIdsAsync(IEnumerable<Guid> ids) => await _repository.DeleteByIdsAsync(ids);
+        public async Task<int> CountAsync() => await _repository.CountAsync();
         
         //Relations
         public async Task<CategoryDto> GetCategoryByNameAsync(string name)

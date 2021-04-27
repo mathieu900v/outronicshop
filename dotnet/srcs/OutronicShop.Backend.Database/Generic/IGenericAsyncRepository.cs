@@ -19,5 +19,6 @@ namespace OutronicShop.Backend.Database.Generic
         Task DeleteByIdAsync(TObjectId id);
 
         Task DeleteByIdsAsync(IEnumerable<TObjectId> ids);
+        Task<int> CountAsync();
     }
 }

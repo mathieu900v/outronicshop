@@ -31,6 +31,7 @@ namespace OutronicShop.Backend.Database.Product
         public async Task<IEnumerable<ProductDto>> SaveAsync(IReadOnlyList<ProductDto> objs) => await _repository.SaveAsync(objs);
         public async Task DeleteByIdAsync(Guid id) => await _repository.DeleteByIdAsync(id);
         public async Task DeleteByIdsAsync(IEnumerable<Guid> ids) => await _repository.DeleteByIdsAsync(ids);
+        public async Task<int> CountAsync() => await _repository.CountAsync();
         
         //Relations a faire
         public async Task<ProductDto> GetProductBySkuAsync(string sku)

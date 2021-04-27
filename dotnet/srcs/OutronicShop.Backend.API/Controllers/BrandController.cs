@@ -7,6 +7,7 @@ using OutronicShop.Backend.Database.Brand;
 using OutronicShop.Backend.Database.Context;
 using OutronicShop.Backend.Domain.Brand;
 using OutronicShop.Backend.Models.Brand;
+using OutronicShop.Backend.Models.Generic;
 
 namespace OutronicShop.Backend.API.Controllers
 {
@@ -48,6 +49,15 @@ namespace OutronicShop.Backend.API.Controllers
 
             await _brandDao.DeleteByIdAsync(brandDto.Id);
             return Ok("Brand has been deleted");
+        }
+
+        [HttpGet("count")]
+        public async Task<ActionResult<CountModel>> CountBrandsAsync()
+        {
+            return Ok(new CountModel
+            {
+                Count = await _brandDao.CountAsync()
+            });
         }
     }
 }

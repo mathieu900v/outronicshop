@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using OutronicShop.Backend.Database.Product;
 using OutronicShop.Backend.Database.Product;
 using OutronicShop.Backend.Domain.Product;
+using OutronicShop.Backend.Models.Generic;
 using OutronicShop.Backend.Models.Product;
 
 namespace OutronicShop.Backend.API.Controllers
@@ -34,6 +35,15 @@ namespace OutronicShop.Backend.API.Controllers
             }
 
             return Ok(await _productDao.SaveAsync(form.Adapt<ProductDto>()));
+        }
+        
+        [HttpGet("count")]
+        public async Task<ActionResult<CountModel>> CountProductsAsync()
+        {
+            return Ok(new CountModel
+            {
+                Count = await _productDao.CountAsync()
+            });
         }
     }
 }

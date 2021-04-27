@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import HomeLayout from './layouts/home.layout'
-import * as ApiClient from '../modules/api/client-api';
-import * as Routes from '../modules/routes/home-routes';
+import ApiClient from '../modules/api/client-api';
+import Routes from '../modules/routes/home-routes';
 
-export default function HomePage({ home }) {
+export default function HomePage({ props }) {
     const router = useRouter();
 
     return(
@@ -15,4 +15,4 @@ export default function HomePage({ home }) {
     );
 }
 
-HomeLayout.Layout = HomeLayout;
+HomePage.Layout = HomeLayout;

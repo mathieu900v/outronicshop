@@ -126,5 +126,19 @@ namespace OutronicShop.Backend.Database.Generic
                 _logger.LogError("DeleteByIdsAsync " + e.Message);
             }
         }
+
+        public async Task<int> CountAsync()
+        {
+            try
+            {
+                await using var context = _contextFactory.CreateDbContext();
+                return await context.Set<TEntity>().CountAsync();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("CountAsync " + e.Message);
+                return 0;
+            }
+        }
     }
 }

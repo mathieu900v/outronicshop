@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using OutronicShop.Backend.Database.Category;
 using OutronicShop.Backend.Domain.Category;
 using OutronicShop.Backend.Models.Category;
+using OutronicShop.Backend.Models.Generic;
 
 namespace OutronicShop.Backend.API.Controllers
 {
@@ -46,6 +47,15 @@ namespace OutronicShop.Backend.API.Controllers
 
             await _categoryDao.DeleteByIdAsync(categoryDto.Id);
             return Ok("Category has been deleted");
+        }
+        
+        [HttpGet("count")]
+        public async Task<ActionResult<CountModel>> CountCategoriesAsync()
+        {
+            return Ok(new CountModel
+            {
+                Count = await _categoryDao.CountAsync()
+            });
         }
     }
 }
