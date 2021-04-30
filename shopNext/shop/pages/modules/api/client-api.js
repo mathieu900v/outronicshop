@@ -71,12 +71,35 @@ const ApiClient = {
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/brands/count`, data, true);
   },
 
+  /**
+   * Create a new brand
+   * @returns {Response} api response
+   */
+  createBrandAsync: async (form) => {
+    return await ApiClient.createDefaultPostRequest(`${baseUrl}/brands/create`, form);
+  },
+
   /************************************************************
    * 
    *                        CATEGORIES
    * 
    ************************************************************/
-
+  /**
+   * Get all the categories from the api
+   * @returns {Response} api response
+   */
+   getCategoriesAsync: async () => {
+    let data = {};
+    return await ApiClient.createDefaultGetRequest(`${baseUrl}/categories`, data);
+    },
+      /**
+   * Delete category by id
+   * @param {uuid} id
+   * @returns {Response} api response
+   */
+  deleteCategoryByIdAsync: async (id, asJson) => {    
+    return await ApiClient.createDefaultPostRequest(`${baseUrl}/categories/delete`, {id}, asJson);
+  },
   /**
    * Count all the categories
    * @returns {Response} api response
@@ -85,6 +108,13 @@ const ApiClient = {
     let data = {};
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/categories/count`, data, true);
   },
+    /**
+   * Create a new category
+   * @returns {Response} api response
+   */
+     createCategoryAsync: async (form) => {
+      return await ApiClient.createDefaultPostRequest(`${baseUrl}/categories/create`, form);
+    },
   /************************************************************
    * 
    *                         PRODUCTS
