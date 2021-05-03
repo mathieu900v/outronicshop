@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import AdminLayout from '../layouts/admin.layout'
 import ApiClient from '../../modules/api/client-api';
 import Routes from '../../modules/routes/admin-routes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 export default function BrandsPage({ brands }) {
     const router = useRouter();
