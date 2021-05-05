@@ -5,6 +5,7 @@ const Routes = {
     /* BRANDS */
     ADMIN_ALL_BRANDS_ROUTE: "/admin/brands",
     ADMIN_CREATE_BRAND_ROUTE: "/admin/brands/create-brand",
+    ADMIN_UPDATE_BRAND_ROUTE: "/admin/brands/update-brand",
 
     /* CATEGORIES */
     ADMIN_ALL_CATEGORIES_ROUTE: "/admin/categories",

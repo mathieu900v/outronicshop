@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import AdminLayout from './layouts/admin.layout'
 import ApiClient from '../modules/api/client-api';
-import Routes from '../modules/routes/admin-routes';
 
 export default function AdminHomePage({ brandsCount, categoriesCount, productsCount }) {
     const router = useRouter();
@@ -15,28 +14,22 @@ export default function AdminHomePage({ brandsCount, categoriesCount, productsCo
         <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">DASHBOARD</h1>
       </div>
       <div className="flex flex-wrap -m-4 text-center">
-        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+        <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
             <h2 className="title-font font-medium text-3xl text-gray-900">{brandsCount}</h2>
             <p className="leading-relaxed">Brands</p>
           </div>
         </div>
-        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+        <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
             <h2 className="title-font font-medium text-3xl text-gray-900">{categoriesCount}</h2>
             <p className="leading-relaxed">Categories</p>
           </div>
         </div>
-        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+        <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
             <h2 className="title-font font-medium text-3xl text-gray-900">{productsCount}</h2>
             <p className="leading-relaxed">Products</p>
-          </div>
-        </div>
-        <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-          <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-            <h2 className="title-font font-medium text-3xl text-gray-900">46</h2>
-            <p className="leading-relaxed">Places</p>
           </div>
         </div>
       </div>

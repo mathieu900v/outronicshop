@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OutronicShop.Backend.Models.Product
 {
@@ -19,7 +20,12 @@ namespace OutronicShop.Backend.Models.Product
             public string Features { get; set; }
             [Required(ErrorMessage = "Price can't be null")]
             public decimal Price { get; set; }
-        
+            
+            [Required(ErrorMessage = "Brand Id can't be null")]
+            public Guid BrandId { get; set; }
+            [Required(ErrorMessage = "Category Id can't be null")]
+            public Guid CategoryId { get; set; }
+
             public int Weight { get; set; }
             public decimal DeliveryFees { get; set; }
             public bool Highlighted { get; set; }

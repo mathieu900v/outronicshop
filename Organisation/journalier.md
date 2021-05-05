@@ -46,3 +46,20 @@
 ### Lundi 26/04
 - Routes, Layouts et et Affichage pour Brands [Aperçu](BrandsWebPage.png)
 ### Mardi 27/04
+- Réunion 11h
+- Amélioration des boutons, routes et mise en forme du code
+### Mercredi 28/04
+- Backend pour Products et Categories
+### Jeudi 29/04
+- Difficultés avec les components React et leur mise en place
+- Formulaire d'ajout d'une brand
+### Vendredi 30/04
+- Réunion 11h30
+- Amélioration des components et de la gestion de l'API
+---
+### Lundi 03/05
+- Reprise totale du code et pas mal de difficultés sur React et les Components
+- BackEnd avec plus de tests et vérifications
+### Mardi 04/05
+- List Categories retravaillée
+- List Products fonctionnelle mais pas encore définitive

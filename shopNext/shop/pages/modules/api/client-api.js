@@ -128,6 +128,30 @@ const ApiClient = {
     let data = {};
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/products/count`, data, true);
   },
+    /**
+   * Get all the products from the api
+   * @returns {Response} api response
+   */
+     getProductsAsync: async () => {
+      let data = {};
+      return await ApiClient.createDefaultGetRequest(`${baseUrl}/products`, data);
+      },
+      /**
+       * Delete all brand by id
+       * @param {uuid} id
+       * @returns {Response} api response
+       */
+      deleteProductByIdAsync: async (id, asJson) => {    
+        return await ApiClient.createDefaultPostRequest(`${baseUrl}/products/delete`, {id}, asJson);
+      },
+    
+      /**
+       * Create a new brand
+       * @returns {Response} api response
+       */
+      createProductAsync: async (form) => {
+        return await ApiClient.createDefaultPostRequest(`${baseUrl}/products/create`, form);
+      },
 }
 
 export default ApiClient;

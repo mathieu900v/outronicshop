@@ -1,29 +1,30 @@
-import Image from 'next/image';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
-import * as Pages from '../../../modules/routes/page-routes'
-import ApiClient from '../../../modules/api/client-api';
+import ApiClient from '../../modules/api/client-api';
+import BrandsPage from '../brands';
 
-export default function EditForm({brand, isNew}){
+export default function EditFormBrand({form, attributes, data}){
+
     const [imgUrl, setImgUrl] = useState();
     const [name, setName] = useState();
     const [alertMessage, setAlertMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState();
+    
+    
 
     async function handleFormSubmission() {
-        console.log("clicked");
-        if(imgUrl === undefined && !brand){
+        if(imgUrl === undefined && !form){
             setAlertMessage("Please fill imgUrl input.");
             return;
         }
 
-        if(name === undefined && !brand){
+        if(name === undefined && !form){
             setAlertMessage("Please fill name input.");
             return;
         }     
 
-        if(isNew){
+        if(data === undefined, form === brand){
             let res = await ApiClient.createBrandAsync({
                 name: name,
                 imgUrl: imgUrl
@@ -48,22 +49,22 @@ export default function EditForm({brand, isNew}){
                 </div>
                 <form className="flex flex-col justify-center w-full md:w-1/2 py-10 px-5 md:px-10">
                     <div className="text-center mb-10">
-                        <h1 className="font-bold text-3xl text-purple-900">Edit/Update Brand</h1>
+                        <h1 className="font-bold text-3xl text-purple-900">Create/Update <b>{form}</b></h1>
                     </div>
                     <div className="flex flex-row items-center text-red-500">
                         {alertMessage !== "" ? <FontAwesomeIcon icon={Icons.faExclamationTriangle} /> : ""}                 
                         <p className="pl-2 font-bold">{alertMessage}</p>
                     </div>
-                    <div className="flex flex-row items-center text-green-500">            
+                    <div className="flex flex-row items-center text-green-500">
                         <p className="font-bold">{successMessage}</p>
                     </div>
                     <div>
                         <div className="flex -mx-3">
                             <div className="w-full px-3 mb-5">
-                                <label for="" className="text-xs font-semibold px-1">Brand name</label>
+                                <label for="" className="text-xs font-semibold px-1">{}</label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faTags} /></div>
-                                    <input type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={brand != undefined ? brand.name : "Brand name"} onChange={e => setName(e.target.value)}/>
+                                    <input type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={form != undefined ? form.name : "Brand name"} onChange={e => setName(e.target.value)}/>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +73,7 @@ export default function EditForm({brand, isNew}){
                                 <label for="" className="text-xs font-semibold px-1">Image Url</label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faLink} /></div>
-                                    <input type="url" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={brand != undefined ? brand.imgUrl : "Brand image url"} onChange={e => setImgUrl(e.target.value)}/>
+                                    <input type="url" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={form != undefined ? form.imgUrl : "Brand image url"} onChange={e => setImgUrl(e.target.value)}/>
                                 </div>
                             </div>
                         </div>

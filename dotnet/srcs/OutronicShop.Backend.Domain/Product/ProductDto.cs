@@ -12,6 +12,10 @@ namespace OutronicShop.Backend.Domain.Product
         public string Features { get; set; }
         public decimal Price { get; set; }
         public int Weight { get; set; }
+        
+        public Guid BrandId { get; set; }
+        public Guid CategoryId { get; set; }
+        
         public decimal DeliveryFees { get; set; }
         public bool Highlighted { get; set; }
 

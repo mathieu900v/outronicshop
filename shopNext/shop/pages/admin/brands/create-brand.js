@@ -1,14 +1,12 @@
 import AdminLayout from '../layouts/admin.layout';
 import { useRouter } from 'next/router';
-import ApiClient from '../../modules/api/client-api';
-import Routes from '../../modules/routes/admin-routes';
-import EditForm from '../components/brands/edit-form.brands.component'
+import EditFormBrand from '../components/edit-form-brand.component'
 
-export default function CreateBrandPage(props) {
+export default function CreateBrandPage(brands) {
     const router = useRouter();
 
     return(
-      <EditForm isNew={true}/>
+      <EditFormBrand form={'Brand'} attributes={brands} data={undefined}/>
   );
 }
 

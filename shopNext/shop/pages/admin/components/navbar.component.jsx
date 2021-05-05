@@ -1,8 +1,7 @@
-import Image from 'next/image'
 import Routes from '../../modules/routes/admin-routes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
-export default function NavBar({props}){
+export default function NavBar(){
     return(
 
     <nav className="w-64 h-screen">
