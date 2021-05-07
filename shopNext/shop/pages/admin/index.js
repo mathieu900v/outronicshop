@@ -3,10 +3,6 @@ import AdminLayout from './layouts/admin.layout'
 import ApiClient from '../modules/api/client-api';
 
 export default function AdminHomePage({ brandsCount, categoriesCount, productsCount }) {
-    const router = useRouter();
-    const refreshData = () => {
-      router.replace(router.asPath);
-    }
 
     return(<section className="text-gray-600 body-font">
     <div className="container px-5 py-24 mx-auto">

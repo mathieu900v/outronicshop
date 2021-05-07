@@ -17,4 +17,11 @@ namespace OutronicShop.Backend.Models.Category
         [Required(ErrorMessage = "ID can't be null")]
         public Guid Id { get; set; }
     }
+    public class CategoryUpdateForm
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public Guid IdParent { get; set; }
+    }
 }

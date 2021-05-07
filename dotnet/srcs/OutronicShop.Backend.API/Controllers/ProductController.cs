@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mapster;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using OutronicShop.Backend.Database.Brand;
 using OutronicShop.Backend.Database.Category;
@@ -35,7 +37,8 @@ namespace OutronicShop.Backend.API.Controllers
         }
         
         [HttpPost("create")]
-        public async Task<ActionResult<ProductDto>> CreateProductAsync([FromBody] ProductForms.ProductCreationForm form)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<ProductDto>> CreateProductAsync([FromBody] ProductCreationForm form)
         {
             BrandDto brandDto = await _brandDao.GetByIdAsync(form.BrandId);
             if (brandDto == null)
@@ -54,7 +57,20 @@ namespace OutronicShop.Backend.API.Controllers
             }
 
             var test = await _productDao.SaveAsync(form.Adapt<ProductDto>());
-            return Ok(test);
+            return Created(Request.GetDisplayUrl(), test);
+        }
+        
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteProductAsync([FromBody] ProductDeletionForm form)
+        {
+            ProductDto productDto = await _productDao.GetProductBySkuAsync(form.Sku);
+            if (productDto == null)
+            {
+                return NotFound("Product SKU doesn't exist");
+            }
+
+            await _productDao.DeleteByIdAsync(productDto.Id);
+            return Ok("Product has been deleted");
         }
         
         [HttpGet("count")]

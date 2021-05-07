@@ -15,4 +15,11 @@ namespace OutronicShop.Backend.Models.Brand
         [Required(ErrorMessage = "Id can't be null")]
         public Guid Id { get; set; }
     }
+
+    public class BrandUpdateForm
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string ImgUrl { get; set; }
+    }
 }

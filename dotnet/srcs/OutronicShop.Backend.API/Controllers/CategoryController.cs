@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mapster;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using OutronicShop.Backend.Database.Category;
 using OutronicShop.Backend.Domain.Category;
@@ -25,6 +27,7 @@ namespace OutronicShop.Backend.API.Controllers
         }
 
         [HttpPost("create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<CategoryDto>> CreateCategoryAsync([FromBody] CategoryCreationForm form)
         {
             CategoryDto categoryDto = await _categoryDao.GetCategoryByNameAsync(form.Title);
@@ -33,7 +36,7 @@ namespace OutronicShop.Backend.API.Controllers
                 return BadRequest("Category title already exist");
             }
 
-            return Ok(await _categoryDao.SaveAsync(form.Adapt<CategoryDto>()));
+            return Created(Request.GetDisplayUrl(), await _categoryDao.SaveAsync(form.Adapt<CategoryDto>()));
         }
 
         [HttpPost("delete")]
@@ -56,6 +59,31 @@ namespace OutronicShop.Backend.API.Controllers
             {
                 Count = await _categoryDao.CountAsync()
             });
+        }
+        [HttpPatch("update")]
+        public async Task<ActionResult<CategoryDto>> UpdateBrandAsync([FromBody] CategoryUpdateForm form)
+        {
+            CategoryDto categoryDto = await _categoryDao.GetByIdAsync(form.Id);
+            if (categoryDto == null)
+            {
+                return NotFound("Category ID doesn't exist");
+            }
+
+            if (string.IsNullOrEmpty(form.Title))
+            {
+                return BadRequest("Title can't be empty");
+            }
+            categoryDto = await _categoryDao.GetCategoryByNameAsync(form.Title);
+            if (categoryDto != null)
+            {
+                return BadRequest("Brand Title already exists");
+            }
+            if (string.IsNullOrEmpty(form.Description))
+            {
+                return BadRequest("Description can't be empty");
+            }
+
+            return Ok(await _categoryDao.SaveAsync(form.Adapt<CategoryDto>()));
         }
     }
 }

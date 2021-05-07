@@ -20,10 +20,11 @@ const ApiClient = {
     }
   },
   createDefaultPostRequest: async (url, form, asJson) => {
+    let response;
     try {
       let fullUrl = `${url}`;
       console.log(`[API] POST: ${fullUrl}`);
-      let response = await fetch(fullUrl, {
+      response = await fetch(fullUrl, {
         body: JSON.stringify(form),
         method: 'POST',
         headers: { 'Access-Control-Allow-Origin': '*',
@@ -31,13 +32,36 @@ const ApiClient = {
         'Content-Type': 'application/json' },
       });
 
-      if(asJson){
-          return await response.json();
-      }
-
-      return response;
     } catch (error) {
       console.error(error);
+    } finally {
+      if(asJson){
+        return await response.json();
+    }
+
+    return response;
+    }
+  },
+  createDefaultPatchRequest: async (url, form, asJson) => {
+    let response;
+    try {
+      let fullUrl = `${url}`;
+      console.log(`[API] PATCH: ${fullUrl}`);
+      response = await fetch(fullUrl, {
+        body: JSON.stringify(form),
+        method: 'PATCH',
+        headers: { 'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json' },
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      if(asJson){
+        return await response.json();
+      }
+
+    return response;
     }
   },
 
@@ -76,7 +100,23 @@ const ApiClient = {
    * @returns {Response} api response
    */
   createBrandAsync: async (form) => {
-    return await ApiClient.createDefaultPostRequest(`${baseUrl}/brands/create`, form);
+    let data = {
+      name: form.name ?? "",
+      imgUrl: form.imgUrl ?? ""
+    }
+    return await ApiClient.createDefaultPostRequest(`${baseUrl}/brands/create`, data);
+  },
+  /**
+   * Update a brand
+   * @returns {Response} api response
+   */
+  updateBrandAsync: async (form) => {
+    let data = {
+      id: form.id ?? defaultUuid,
+      name: form.name ?? "",
+      imgUrl: form.imgUrl ?? ""
+    }
+    return await ApiClient.createDefaultPatchRequest(`${baseUrl}/brands/update`, data);
   },
 
   /************************************************************
@@ -115,6 +155,19 @@ const ApiClient = {
      createCategoryAsync: async (form) => {
       return await ApiClient.createDefaultPostRequest(`${baseUrl}/categories/create`, form);
     },
+      /**
+   * Update a category
+   * @returns {Response} api response
+   */
+  updateCategoryAsync: async (form) => {
+    let data = {
+      id: form.id ?? defaultUuid,
+      title: form.title ?? "",
+      description: form.description ?? "",
+      idParent: form.idParent ?? defaultUuid
+    }
+    return await ApiClient.createDefaultPatchRequest(`${baseUrl}/categories/update`, data);
+  },
   /************************************************************
    * 
    *                         PRODUCTS

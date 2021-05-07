@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mapster;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using OutronicShop.Backend.Database.Brand;
 using OutronicShop.Backend.Database.Context;
@@ -25,8 +27,9 @@ namespace OutronicShop.Backend.API.Controllers
         {
             return Ok(await _brandDao.GetAllAsync());
         }
-
+        
         [HttpPost("create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<BrandDto>> CreateBrandAsync([FromBody] BrandCreationForm form)
         {
             BrandDto brandDto = await _brandDao.GetBrandByNameAsync(form.Name);
@@ -35,7 +38,7 @@ namespace OutronicShop.Backend.API.Controllers
                 return BadRequest("Brand name already exist");
             }
 
-            return Ok(await _brandDao.SaveAsync(form.Adapt<BrandDto>()));
+            return Created(Request.GetDisplayUrl(), await _brandDao.SaveAsync(form.Adapt<BrandDto>()));
         }
 
         [HttpPost("delete")]
@@ -58,6 +61,32 @@ namespace OutronicShop.Backend.API.Controllers
             {
                 Count = await _brandDao.CountAsync()
             });
+        }
+        
+        [HttpPatch("update")]
+        public async Task<ActionResult<BrandDto>> UpdateBrandAsync([FromBody] BrandUpdateForm form)
+        {
+            BrandDto brandDto = await _brandDao.GetByIdAsync(form.Id);
+            if (brandDto == null)
+            {
+                return NotFound("Brand ID doesn't exist");
+            }
+
+            if (string.IsNullOrEmpty(form.Name))
+            {
+                return BadRequest("Name can't be empty");
+            }
+            brandDto = await _brandDao.GetBrandByNameAsync(form.Name);
+            if (brandDto != null)
+            {
+                return BadRequest("Brand Name already exists");
+            }
+            if (string.IsNullOrEmpty(form.ImgUrl))
+            {
+                return BadRequest("ImgUrl can't be empty");
+            }
+
+            return Ok(await _brandDao.SaveAsync(form.Adapt<BrandDto>()));
         }
     }
 }
