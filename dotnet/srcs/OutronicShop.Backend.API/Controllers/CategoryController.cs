@@ -61,7 +61,7 @@ namespace OutronicShop.Backend.API.Controllers
             });
         }
         [HttpPatch("update")]
-        public async Task<ActionResult<CategoryDto>> UpdateBrandAsync([FromBody] CategoryUpdateForm form)
+        public async Task<ActionResult<CategoryDto>> UpdateCategoryAsync([FromBody] CategoryUpdateForm form)
         {
             CategoryDto categoryDto = await _categoryDao.GetByIdAsync(form.Id);
             if (categoryDto == null)
@@ -74,7 +74,7 @@ namespace OutronicShop.Backend.API.Controllers
                 return BadRequest("Title can't be empty");
             }
             categoryDto = await _categoryDao.GetCategoryByNameAsync(form.Title);
-            if (categoryDto != null)
+            if (categoryDto != null && categoryDto.Id != form.Id)
             {
                 return BadRequest("Brand Title already exists");
             }

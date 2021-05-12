@@ -39,6 +39,11 @@ export default function NavBar(){
                     <FontAwesomeIcon className="fa-lg ml-3" icon={Icons.faCopyright} />
                     <span className="ml-2 font-semibold text-sm tracking-wide truncate font-sans">Brands</span></a>
                 </li>
+                <li>
+                    <a href={Routes.ADMIN_ALL_CARRIERS_ROUTE} className="flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-purple-500 pr-6">
+                    <FontAwesomeIcon className="fa-lg ml-3" icon={Icons.faTruck} />
+                    <span className="ml-2 font-semibold text-sm tracking-wide truncate font-sans">Carriers</span></a>
+                </li>
                 <li className="px-5">
                 <div className="flex flex-row items-center h-8">
                     <div className="flex font-semibold text-sm text-gray-300 my-4 font-sans uppercase">Account</div>

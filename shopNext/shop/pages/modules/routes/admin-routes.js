@@ -10,6 +10,9 @@ const Routes = {
     
     /* PRODUCTS */
     ADMIN_ALL_PRODUCTS_ROUTE: "/admin/products",
+
+    /* CARRIERS */
+    ADMIN_ALL_CARRIERS_ROUTE: "/admin/carriers",
 }
 
 export default Routes;

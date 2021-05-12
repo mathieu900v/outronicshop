@@ -1,27 +1,25 @@
-import Routes from '../../modules/routes/admin-routes'
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
 import ApiClient from '../../modules/api/client-api';
 import ReturnButton from '../components/return-button.component'
+import AlertMessage from '../components/alert-message.component'
 
-export default function dataCategory({data}){
-    const isNew = data == undefined;
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState();
-    const [idParent, setIdParent] = useState();
-
-    const [alertMessage, setAlertMessage] = useState("");
-    const [successMessage, setSuccessMessage] = useState();    
+export default function dataCategory({data, closeEvent}){
+    const isNew = data == null;
+    const [title, setTitle] = useState(isNew ? "" : data.title ?? "");
+    const [description, setDescription] = useState(isNew ? "" : data.description ?? "");
+    const [idParent, setIdParent] = useState(isNew ? "" : data.idParent ?? "");
+    const [alert, setAlert] = useState({msg: null, isError: false});
 
     async function handledataSubmission(event) {
         event.preventDefault();
         if(title === undefined && !data){
-            setAlertMessage("Please fill title input.");
+            setAlert({msg: "Please fill title input.", isError: true});
             return;
         }
         if(description === undefined && !data){
-            setAlertMessage("Please fill description input.");
+            setAlert({msg: "Please fill description input.", isError: true});
             return;
         }
         if(isNew){
@@ -32,11 +30,9 @@ export default function dataCategory({data}){
             });
             
             if(res.status != 201){
-                setAlertMessage(await res.text());
-                setSuccessMessage("");
+                setAlert({msg: await res.text(), isError: true});
             } else{
-                setSuccessMessage("New category created successfully !");
-                setAlertMessage("");
+                setAlert({msg: "New category created successfully !", isError: false});
             }
             return;
         }
@@ -47,11 +43,9 @@ export default function dataCategory({data}){
             idParent: idParent
         });
         if(res.status != 200){
-            setAlertMessage(await res.text());
-            setSuccessMessage("");
+            setAlert({msg: await res.text(), isError: true});
         } else{
-            setSuccessMessage("Category updated successfully !");
-            setAlertMessage("");
+            setAlert({msg: "Category updated successfully !", isError: false});
         }
     }
 
@@ -63,13 +57,7 @@ export default function dataCategory({data}){
                     <div className="text-center mb-10">
                         <h1 className="font-bold text-3xl text-purple-900">{isNew ? "Create" : "Update"} a <b>Category</b></h1>
                     </div>
-                    <div className="flex flex-row items-center text-red-500">
-                        {alertMessage !== "" ? <FontAwesomeIcon icon={Icons.faExclamationTriangle} /> : ""}
-                        <p className="pl-2 font-bold">{alertMessage}</p>
-                    </div>
-                    <div className="flex flex-row items-center text-green-500">
-                        <p className="font-bold">{successMessage}</p>
-                    </div>
+                    {alert != null ? <AlertMessage message={alert.msg} isError={alert.isError}/> : ""}
                     <div className="flex flex-row">
                         <div className="flex w-1/2">
                             <div className="w-full px-3 mb-2">
@@ -104,7 +92,7 @@ export default function dataCategory({data}){
                 </form>
             </div>
         </div>
-        <ReturnButton event={Routes.ADMIN_ALL_CATEGORIES_ROUTE}/>
+        <ReturnButton event={closeEvent}/>
     </div>
     )
 }

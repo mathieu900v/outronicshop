@@ -77,7 +77,7 @@ namespace OutronicShop.Backend.API.Controllers
                 return BadRequest("Name can't be empty");
             }
             brandDto = await _brandDao.GetBrandByNameAsync(form.Name);
-            if (brandDto != null)
+            if (brandDto != null && brandDto.Id != form.Id)
             {
                 return BadRequest("Brand Name already exists");
             }

@@ -1,20 +1,56 @@
 import { useRouter } from 'next/router';
 import AdminLayout from '../layouts/admin.layout'
 import ApiClient from '../../modules/api/client-api';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as Icons from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FormCategory from '../components/form-category.component'
-import AddButton from '../components/add-button.component'
-import EditButton from '../components/edit-button.component'
+import ListCategory from '../components/list-category.component'
+import Image from 'next/image'
 
-export default function CategoriesPage({ categories }) {
+export default function CategoriesPage({ initCategories }) {
+
+    const[currentCategory, setCurrentCategory] = useState();
+    const[currentState, setCurrentState] = useState(1);
     const router = useRouter();
-    const [isUpdating, setIsUpdating] = useState({state: false});
-    const [isCreating, setIsCreating] = useState({state: false});
-    const refreshData = () => {
-      router.replace(router.asPath);
+    const [isRefreshing, setIsRefreshing] = useState(false);
+    const Spinner = () => <img src="/icons/spinner.svg" className="fixed bottom-4 left-64"/>;
+    const states = {
+        LIST: 1,
+        FORM: 2,
+        LOADING: 3,
     }
+
+    useEffect(() => {
+        setIsRefreshing(false);
+    }, [initCategories]);
+
+    function refreshData () {
+        router.replace(router.asPath);
+        setIsRefreshing(true);
+    };
+
+    function toggleForm(category){
+        console.log("FORM");
+        setCurrentState(states.FORM);
+        setCurrentCategory(category);
+    }
+    function closeForm() {
+        setCurrentState(states.LIST);
+        setCurrentCategory(null);
+        refreshData();
+    }
+
+    switch(currentState) {
+        case states.LIST:
+            return(
+            <>
+                <ListCategory categories={initCategories} toggleFormEvent={toggleForm} refreshData={refreshData}/>
+                {isRefreshing ? <Spinner/> : ""}
+            </>
+            );
+        case states.FORM:
+            return(<FormCategory data={currentCategory} closeEvent={closeForm}/>);
+    }
+    /* COMPONENT
 
     async function deleteCategoryById(id){
         const res = await ApiClient.deleteCategoryByIdAsync(id);
@@ -73,17 +109,17 @@ export default function CategoriesPage({ categories }) {
                 <AddButton event={createCategory}/>
             </div>
     );
-    }
+    }*/
 }
+
 
 CategoriesPage.Layout = AdminLayout;
 
 export async function getStaticProps() {
-    const categories = await ApiClient.getCategoriesAsync();
-    console.log(categories);
+    const initCategories = await ApiClient.getCategoriesAsync();
     return {
       props: {
-         categories
+         initCategories
       },
     }
   }

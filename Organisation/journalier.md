@@ -114,3 +114,15 @@
 -   FormCategory visuel fait
 
 ### Vendredi 07/05
+
+-   Réunion 14h
+-   Reprise de l'organisation des Listes et Formulaires : La page Index de chaque route doit avoir 3 états : List, FormCreate et FormUpdate
+
+### Lundi 10/05
+
+-   Au final il y aura 3 états : List, Form et Loading. le component Form reçoit des données d'édition si il y en a, sinon il considère une création. Le fait d'avoir un Loading permet un retour visuel sans clignotement lors de la suppression.
+
+### Mardi 11/05
+
+-   Simplification du code avec Brand qui contient maintenant les components List, Form,, Edit et Add (CRUD).
+-   Les components Form contiennent eux les components AlertMessage et ReturnButton.
