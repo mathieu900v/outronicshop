@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OutronicShop.Backend.Database.Context;
 using OutronicShop.Backend.Database.Generic;
 using OutronicShop.Backend.Domain.Category;
+using OutronicShop.Backend.Models.Category;
 
 namespace OutronicShop.Backend.Database.Category
 {
@@ -41,6 +43,31 @@ namespace OutronicShop.Backend.Database.Category
                 await using WebContext context = _context.CreateDbContext();
                 var tmp = await context.Categories.FirstOrDefaultAsync(x => x.Title.ToLower().Equals(name.ToLower()));
                 return _mapper.Map(tmp);
+            }
+            catch (Exception e)
+            {
+                _logger.LogDebug($"[GetCategoryByNameAsync] {e.Message}");
+                return null;
+            }
+        }
+
+        //Queries Sort
+        public async Task<IEnumerable<CategoryDto>> GetAllCategoriesByQueriesAsync(CategoryRequestQuery query)
+        {
+            try
+            {
+                await using WebContext context = _context.CreateDbContext();
+                List<CategoryEntity> tmp = new ();
+                if (string.IsNullOrWhiteSpace(query.Search))
+                {
+                    tmp = await context.Categories.ToListAsync();
+                }
+                else
+                {
+                    tmp = await context.Categories.Where(x =>
+                        x.Title.ToLower().Contains(query.Search.ToLower())).ToListAsync();
+                }
+                return _mapper.Map(query.IsOrdered ? tmp.AsQueryable().OrderBy(x => x.Title) : tmp);
             }
             catch (Exception e)
             {

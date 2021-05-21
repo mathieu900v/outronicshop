@@ -42,6 +42,41 @@ namespace OutronicShop.Backend.Database.Migrations
                     b.ToTable("brand", "products");
                 });
 
+            modelBuilder.Entity("OutronicShop.Backend.Database.Carrier.CarrierEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Countries")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
+
+                    b.Property<int>("MaxGrams")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinGrams")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("carrier", "products");
+                });
+
             modelBuilder.Entity("OutronicShop.Backend.Database.Category.CategoryEntity", b =>
                 {
                     b.Property<Guid>("Id")

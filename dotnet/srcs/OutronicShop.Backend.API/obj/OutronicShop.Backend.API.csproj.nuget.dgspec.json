@@ -116,6 +116,9 @@
             "projectReferences": {
               "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Domain\\OutronicShop.Backend.Domain.csproj": {
                 "projectPath": "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Domain\\OutronicShop.Backend.Domain.csproj"
+              },
+              "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Models\\OutronicShop.Backend.Models.csproj": {
+                "projectPath": "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Models\\OutronicShop.Backend.Models.csproj"
               }
             }
           }

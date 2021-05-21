@@ -8,16 +8,16 @@ import Image from 'next/image'
 
 export default function BrandsPage({ initBrands }) {
 
-    const[currentBrand, setCurrentBrand] = useState();
-    const[currentState, setCurrentState] = useState(1);
-    const router = useRouter();
-    const [isRefreshing, setIsRefreshing] = useState(false);
-    const Spinner = () => <img src="/icons/spinner.svg" className="fixed bottom-4 left-64"/>;
     const states = {
         LIST: 1,
         FORM: 2,
         LOADING: 3,
     }
+    const[currentBrand, setCurrentBrand] = useState();
+    const[currentState, setCurrentState] = useState(states.LIST);
+    const router = useRouter();
+    const [isRefreshing, setIsRefreshing] = useState(false);
+    const Spinner = () => <img src="/icons/spinner.svg" className="fixed bottom-4 left-64"/>;
 
     useEffect(() => {
         setIsRefreshing(false);
@@ -28,9 +28,7 @@ export default function BrandsPage({ initBrands }) {
         setIsRefreshing(true);
     };
 
-
     function toggleForm(brand){
-        console.log("FORM");
         setCurrentState(states.FORM);
         setCurrentBrand(brand);
     }

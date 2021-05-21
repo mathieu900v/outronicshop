@@ -4,12 +4,14 @@ import * as Icons from '@fortawesome/free-solid-svg-icons'
 import ApiClient from '../../modules/api/client-api';
 import ReturnButton from '../components/return-button.component'
 import AlertMessage from '../components/alert-message.component'
+import { NIL as NIL_UUID } from 'uuid';
 
-export default function dataCategory({data, closeEvent}){
+export default function dataCategory({data, closeEvent, categories}){
     const isNew = data == null;
+    
     const [title, setTitle] = useState(isNew ? "" : data.title ?? "");
     const [description, setDescription] = useState(isNew ? "" : data.description ?? "");
-    const [idParent, setIdParent] = useState(isNew ? "" : data.idParent ?? "");
+    const [idParent, setIdParent] = useState(isNew ? NIL_UUID : data.idParent ?? NIL_UUID);
     const [alert, setAlert] = useState({msg: null, isError: false});
 
     async function handledataSubmission(event) {
@@ -22,7 +24,12 @@ export default function dataCategory({data, closeEvent}){
             setAlert({msg: "Please fill description input.", isError: true});
             return;
         }
+        if(idParent === undefined) {
+            setAlert({msg: "GUID is invalid", isError: true});
+            return;
+        }
         if(isNew){
+            console.log(`title: ${title}\ndesc: ${description}\nidParent: ${idParent}`);
             let res = await ApiClient.createCategoryAsync({
                 title: title,
                 description: description,
@@ -70,10 +77,15 @@ export default function dataCategory({data, closeEvent}){
                         </div>
                         <div className="flex w-1/2">
                             <div className="w-full px-3 mb-2">
-                                <label for="" className="text-xs font-semibold px-1">UUID Category Parent</label>
+                                <label for="" className="text-xs font-semibold px-1">Parent Category</label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faDatabase} /></div>
-                                    <input type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.idParent : "Parent category UUID"} defaultValue={isNew ? "" : data.idParent} onChange={e => setIdParent(e.target.value)}/>
+                                    <select onChange={e => setIdParent(e.target.value)} className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500">
+                                        <option value={NIL_UUID}>Main Category</option>
+                                        {categories.map((category) => (
+                                            <option selected={!isNew && data.idParent != NIL_UUID && category.id == data.idParent ? true : false} value={category.id} className="border-b border-gray-200 hover:bg-gray-100">{category.title}</option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
                         </div>

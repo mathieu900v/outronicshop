@@ -126,3 +126,30 @@
 
 -   Simplification du code avec Brand qui contient maintenant les components List, Form,, Edit et Add (CRUD).
 -   Les components Form contiennent eux les components AlertMessage et ReturnButton.
+
+### Mecrcredi 12/05
+
+-   Début de la refonte du Form Product et de la liste associée
+-   Liste et Index pour Products optimisés (Comme pour Brand et Category)
+
+### Lundi 17/05
+
+-   Menu dropdown sur le Form Category pour la catégorie parente fonctionnel, ainsi que la possibilité d'une Main Category
+-   Find pour trouver la catégorie parente (découverte du Find)
+-   Réunion 16h
+
+### Mardi 18/05
+
+-   Remise en forme du Product Form avec :
+-   Dropdown menus pour choisir la Catégorie et la Brand
+-   Radio Button pour le Highlighted
+
+### Mercredi 19/05
+
+-   Form Product fonctionnel pour le create et icones d'éditions dans la liste
+-   Bug : ID product n'est pas reconnu à l'Update
+
+### Jeudi 20/05
+
+-   BackEnd pour Carriers fait avec les 5 : List, Create, Delete, Count et Update
+-   Champ recherche dans la listCategory (Gestion d'un isOrder et champ search BackEnd)

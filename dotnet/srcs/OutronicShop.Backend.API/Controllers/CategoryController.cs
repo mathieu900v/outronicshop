@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mapster;
 using Microsoft.AspNetCore.Http;
@@ -21,15 +22,26 @@ namespace OutronicShop.Backend.API.Controllers
             _categoryDao = categoryDao;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategoriesAsync()
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategoriesAsync([FromQuery] CategoryRequestQuery query)
         {
-            return Ok(await _categoryDao.GetAllAsync());
+            var tmp = await _categoryDao.GetAllCategoriesByQueriesAsync(query);
+            return Ok(tmp);
         }
 
         [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<CategoryDto>> CreateCategoryAsync([FromBody] CategoryCreationForm form)
         {
+            if (string.IsNullOrWhiteSpace(form.Description) || string.IsNullOrWhiteSpace(form.Title))
+            {
+                return BadRequest("Fields can't be empty");
+            }
+
+            CategoryDto categoryById = await _categoryDao.GetByIdAsync(form.IdParent);
+            if (form.IdParent != Guid.Empty && categoryById == null)
+            {
+                return NotFound("Category ID does not exist");
+            }
             CategoryDto categoryDto = await _categoryDao.GetCategoryByNameAsync(form.Title);
             if (categoryDto != null)
             {

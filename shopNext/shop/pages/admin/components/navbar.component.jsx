@@ -15,13 +15,18 @@ export default function NavBar(){
             <div className="overflow-y-auto overflow-x-hidden flex-grow">
             <ul className="flex flex-col py-6 space-y-1">
                 <li>
+                    <a href={Routes.ADMIN_HOME_ROUTE} className="flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-gray-200 pr-6">
+                    <FontAwesomeIcon className="fa-lg ml-3" icon={Icons.faHome} />
+                    <span className="ml-2 font-semibold text-sm tracking-wide truncate font-sans">Website</span></a>
+                </li>
+                <li>
                     <a href={Routes.ADMIN_DASHBOARD_ROUTE} className="flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-purple-500 pr-6">
                     <FontAwesomeIcon className="fa-lg ml-3" icon={Icons.faChartLine} />
                     <span className="ml-2 font-semibold text-sm tracking-wide truncate font-sans">Dashboard</span></a>
                 </li>
                 <li className="px-5">
                 <div className="flex flex-row items-center h-8">
-                    <div className="flex font-semibold text-sm text-gray-300 my-4 font-sans uppercase">Update</div>
+                    <div className="flex font-semibold text-sm text-gray-300 my-4 font-sans uppercase">Database</div>
                 </div>
                 </li>
                 <li>

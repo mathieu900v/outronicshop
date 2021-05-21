@@ -877,7 +877,8 @@
         "dependencies": {
           "Mapster": "7.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0-preview3",
-          "OutronicShop.Backend.Domain": "1.0.0"
+          "OutronicShop.Backend.Domain": "1.0.0",
+          "OutronicShop.Backend.Models": "1.0.0"
         },
         "runtime": {
           "OutronicShop.Backend.Database.dll": {}

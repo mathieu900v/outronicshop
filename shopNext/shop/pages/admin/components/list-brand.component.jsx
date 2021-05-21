@@ -20,7 +20,7 @@ export default function listBrand({brands, toggleFormEvent, refreshData}) {
                         <th className="py-4 pl-10 text-left">Image</th>
                         <th className="py-4 text-left">Name</th>
                         <th className="py-4 text-left">UUID</th>
-                        <th className="py-4 text-left">Edit</th>
+                        <th className="w-1/12 py-4 text-left">Edit</th>
                     </tr>
                 </thead>
             <tbody className="text-gray-600 text-sm">

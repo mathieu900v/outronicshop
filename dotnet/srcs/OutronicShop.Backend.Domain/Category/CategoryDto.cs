@@ -8,7 +8,8 @@ namespace OutronicShop.Backend.Domain.Category
         public string Title { get; set; }
         public string Description { get; set; }
         public Guid IdParent { get; set; }
-        
+        public bool HasParent => !IdParent.Equals(Guid.Empty);
+
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
     }

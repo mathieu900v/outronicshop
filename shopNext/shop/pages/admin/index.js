@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
 import AdminLayout from './layouts/admin.layout'
 import ApiClient from '../modules/api/client-api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from '@fortawesome/free-solid-svg-icons'
 
-export default function AdminHomePage({ brandsCount, categoriesCount, productsCount }) {
+export default function AdminHomePage({ brandsCount, categoriesCount, productsCount, carriersCount }) {
 
     return(<section className="text-gray-600 body-font">
     <div className="container px-5 py-16 mx-auto">
@@ -30,7 +32,7 @@ export default function AdminHomePage({ brandsCount, categoriesCount, productsCo
         </div>
         <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
           <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-            <h2 className="title-font font-medium text-3xl text-gray-900">0</h2>
+            <h2 className="title-font font-medium text-3xl text-gray-900">{carriersCount}</h2>
             <p className="leading-relaxed">Carriers</p>
           </div>
         </div>
@@ -45,11 +47,13 @@ export async function getStaticProps() {
   const brandsCount = await ApiClient.countBrandsAsync();
   const categoriesCount = await ApiClient.countCategoriesAsync();
   const productsCount = await ApiClient.countProductsAsync();
+  const carriersCount = await ApiClient.countCarriersAsync();
   return {
     props: {
        brandsCount: brandsCount.count,
        categoriesCount: categoriesCount.count,
-       productsCount: productsCount.count
+       productsCount: productsCount.count,
+       carriersCount: carriersCount.count,
     },
   }
 }

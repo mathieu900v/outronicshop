@@ -1,5 +1,8 @@
 const Routes = {
     /* HOME */
+    ADMIN_HOME_ROUTE: "/",
+    
+    /* DASHBOARD */
     ADMIN_DASHBOARD_ROUTE: "/admin",
 
     /* BRANDS */

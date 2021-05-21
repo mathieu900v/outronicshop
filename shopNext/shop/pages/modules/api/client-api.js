@@ -128,8 +128,14 @@ const ApiClient = {
    * Get all the categories from the api
    * @returns {Response} api response
    */
-   getCategoriesAsync: async () => {
-    let data = {};
+   getCategoriesAsync: async (query) => {
+    let data = null;
+    if(query) {
+      data = {
+        search: query.search ?? "",
+        isOrdered: query.isOrdered ?? false
+      };
+    }
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/categories`, data);
     },
       /**
@@ -194,8 +200,8 @@ const ApiClient = {
        * @param {uuid} id
        * @returns {Response} api response
        */
-      deleteProductByIdAsync: async (id, asJson) => {    
-        return await ApiClient.createDefaultPostRequest(`${baseUrl}/products/delete`, {id}, asJson);
+      deleteProductBySkuAsync: async (sku, asJson) => {    
+        return await ApiClient.createDefaultPostRequest(`${baseUrl}/products/delete`, {sku}, asJson);
       },
     
       /**
@@ -205,6 +211,37 @@ const ApiClient = {
       createProductAsync: async (form) => {
         return await ApiClient.createDefaultPostRequest(`${baseUrl}/products/create`, form);
       },
+
+      updateProductAsync: async (form) => {
+        let data = {
+          sku: form.sku ?? "",
+          title: form.title ?? "",
+          imgUrl: form.imgUrl ?? "",
+          description: form.description ?? "",
+          features: form.features ?? "",
+          price: form.price ?? 0.00,
+          brandId: form.brandId ?? defaultUuid,
+          categoryId: form.categoryId ?? defaultUuid,
+          weight: form.weight ?? 0,
+          deliveryFees: form.deliveryFees ?? 0.00,
+          highlighted: form.highlighted ?? false
+        }
+        return await ApiClient.createDefaultPatchRequest(`${baseUrl}/products/update`, data);
+      },
+   /************************************************************
+   * 
+   *                         CARRIERS
+   * 
+   ************************************************************/
+  /**
+   * Count all the carriers
+   * @returns {Response} api response
+   */
+   countCarriersAsync: async () => {
+    let data = {};
+    return await ApiClient.createDefaultGetRequest(`${baseUrl}/carriers/count`, data, true);
+  },
+
 }
 
 export default ApiClient;

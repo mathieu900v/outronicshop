@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\OutronicShop.Backend.Domain\OutronicShop.Backend.Domain.csproj" />
+      <ProjectReference Include="..\OutronicShop.Backend.Models\OutronicShop.Backend.Models.csproj" />
     </ItemGroup>
 
 </Project>

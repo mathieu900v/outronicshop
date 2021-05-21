@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using OutronicShop.Backend.Database.Brand;
 using OutronicShop.Backend.Database.Category;
 using OutronicShop.Backend.Database.Product;
-using OutronicShop.Backend.Database.Product;
 using OutronicShop.Backend.Domain.Brand;
 using OutronicShop.Backend.Domain.Category;
 using OutronicShop.Backend.Domain.Product;
@@ -40,6 +39,15 @@ namespace OutronicShop.Backend.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<ProductDto>> CreateProductAsync([FromBody] ProductCreationForm form)
         {
+            if (string.IsNullOrEmpty(form.Sku))
+            {
+                return BadRequest("SKU can't be empty");
+            }
+            ProductDto productDto = await _productDao.GetProductBySkuAsync(form.Sku);
+            if (productDto != null)
+            {
+                return BadRequest("Product SKU already exist");
+            }
             BrandDto brandDto = await _brandDao.GetByIdAsync(form.BrandId);
             if (brandDto == null)
             {
@@ -49,11 +57,6 @@ namespace OutronicShop.Backend.API.Controllers
             if (categoryDto == null)
             {
                 return BadRequest("Category ID doesn't exist");
-            }
-            ProductDto productDto = await _productDao.GetProductBySkuAsync(form.Sku);
-            if (productDto != null)
-            {
-                return BadRequest("Product Sku already exist");
             }
 
             var test = await _productDao.SaveAsync(form.Adapt<ProductDto>());
@@ -80,6 +83,31 @@ namespace OutronicShop.Backend.API.Controllers
             {
                 Count = await _productDao.CountAsync()
             });
+        }
+        [HttpPatch("update")]
+        public async Task<ActionResult<ProductDto>> UpdateProductAsync([FromBody] ProductUpdateForm form)
+        {
+            ProductDto productDto = await _productDao.GetByIdAsync(form.Id);
+            if (productDto == null)
+            {
+                return NotFound("Product ID doesn't exist");
+            }
+
+            if (string.IsNullOrEmpty(form.Sku))
+            {
+                return BadRequest("SKU can't be empty");
+            }
+            productDto = await _productDao.GetProductBySkuAsync(form.Sku);
+            if (productDto != null && productDto.Sku != form.Sku)
+            {
+                return BadRequest("SKU already exists");
+            }
+            if (string.IsNullOrEmpty(form.Description))
+            {
+                return BadRequest("Description can't be empty");
+            }
+
+            return Ok(await _productDao.SaveAsync(form.Adapt<ProductDto>()));
         }
     }
 }

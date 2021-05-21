@@ -653,6 +653,16 @@
         "runtime": {
           "bin/placeholder/OutronicShop.Backend.Domain.dll": {}
         }
+      },
+      "OutronicShop.Backend.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/OutronicShop.Backend.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OutronicShop.Backend.Models.dll": {}
+        }
       }
     }
   },
@@ -2765,6 +2775,11 @@
       "type": "project",
       "path": "../OutronicShop.Backend.Domain/OutronicShop.Backend.Domain.csproj",
       "msbuildProject": "../OutronicShop.Backend.Domain/OutronicShop.Backend.Domain.csproj"
+    },
+    "OutronicShop.Backend.Models/1.0.0": {
+      "type": "project",
+      "path": "../OutronicShop.Backend.Models/OutronicShop.Backend.Models.csproj",
+      "msbuildProject": "../OutronicShop.Backend.Models/OutronicShop.Backend.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2772,7 +2787,8 @@
       "Mapster >= 7.2.0",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.0-preview.3.21201.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.0-preview3",
-      "OutronicShop.Backend.Domain >= 1.0.0"
+      "OutronicShop.Backend.Domain >= 1.0.0",
+      "OutronicShop.Backend.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2809,6 +2825,9 @@
           "projectReferences": {
             "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Domain\\OutronicShop.Backend.Domain.csproj": {
               "projectPath": "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Domain\\OutronicShop.Backend.Domain.csproj"
+            },
+            "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Models\\OutronicShop.Backend.Models.csproj": {
+              "projectPath": "C:\\Users\\mathi\\outronicshop\\dotnet\\srcs\\OutronicShop.Backend.Models\\OutronicShop.Backend.Models.csproj"
             }
           }
         }

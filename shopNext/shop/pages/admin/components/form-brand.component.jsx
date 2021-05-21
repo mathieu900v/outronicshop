@@ -51,7 +51,7 @@ export default function dataBrand({data, closeEvent}){
         <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full h-full overflow-hidden">
             <div className="md:flex w-full h-full">
                 <div className="flex flex-col w-1/2 bg-purple-900 p-10 justify-center">
-                    <img src={imgUrl} alt=""/>
+                    <img className="max-w-2xl mx-auto" src={imgUrl} alt=""/>
                 </div>
                 <form onSubmit={async (event) => await handledataSubmission(event)} className="flex flex-col justify-center w-full md:w-1/2 py-10 px-5 md:px-10">
                     <div className="text-center mb-10">
@@ -78,7 +78,7 @@ export default function dataBrand({data, closeEvent}){
                             </div>
                         </div>
                         <div className="w-full px-3 mb-5 flex">
-                            <input type="submit" className="mx-auto w-full bg-purple-500 hover:bg-purple-700 focus:bg-purple-700 text-white rounded-lg px-3 py-3 font-semibold" value={isNew ? "Create" : "Update"}/>
+                            <input type="submit" className="cursor-pointer mx-auto w-full bg-purple-500 hover:bg-purple-700 focus:bg-purple-700 text-white rounded-lg px-3 py-3 font-semibold" value={isNew ? "Create" : "Update"}/>
                         </div>
                     </div>
                 </form>
