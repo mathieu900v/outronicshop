@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mapster;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using OutronicShop.Backend.Database.Product;
 using OutronicShop.Backend.Domain.Brand;
 using OutronicShop.Backend.Domain.Category;
 using OutronicShop.Backend.Domain.Product;
+using OutronicShop.Backend.Models.Enums;
 using OutronicShop.Backend.Models.Generic;
 using OutronicShop.Backend.Models.Product;
 
@@ -30,11 +32,55 @@ namespace OutronicShop.Backend.API.Controllers
             _brandDao = brandDao;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsAsync()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsByQueryAsync([FromQuery] ProductRequestQuery query)
         {
-            return Ok(await _productDao.GetAllAsync());
+            if (!Request.QueryString.HasValue)
+            {
+                return Ok(await _productDao.GetAllAsync());
+            }
+
+            switch (query.SearchType)
+            {
+                case ProductSearchType.Category:
+                {
+                    if (!query.CategoryId.HasValue)
+                    {
+                        return BadRequest("Invalid Query : CategoryId can't be null");
+                    }
+
+                    CategoryDto categoryDto = await _categoryDao.GetByIdAsync(query.CategoryId.Value);
+                    if (categoryDto == null)
+                    {
+                        return BadRequest("Invalid Query : Invalid Category ID");
+                    }
+
+                    break;
+                }
+                case ProductSearchType.Brand:{
+                    if (!query.BrandId.HasValue)
+                    {
+                        return BadRequest("Invalid Query : BrandId can't be null");
+                    }
+
+                    BrandDto brandDto = await _brandDao.GetByIdAsync(query.BrandId.Value);
+                    if (brandDto == null)
+                    {
+                        return BadRequest("Invalid Query : Invalid Brand ID");
+                    }
+
+                    break;
+                }
+                case ProductSearchType.PlainText:{
+                    if (string.IsNullOrWhiteSpace(query.Search))
+                    {
+                        return BadRequest("Invalid Query : SearchBar can't be null");
+                    }
+                    break;
+                }
+            }
+
+            return Ok(await _productDao.GetProductsByQueryAsync(query));
         }
-        
         [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<ProductDto>> CreateProductAsync([FromBody] ProductCreationForm form)
@@ -42,6 +88,15 @@ namespace OutronicShop.Backend.API.Controllers
             if (string.IsNullOrEmpty(form.Sku))
             {
                 return BadRequest("SKU can't be empty");
+            }
+
+            if (form.Sku.Length > 7)
+            {
+                return BadRequest("SKU must be 6-7 characters");
+            }
+            if (form.Sku.Length < 6)
+            {
+                return BadRequest("SKU must be 6-7 characters");
             }
             ProductDto productDto = await _productDao.GetProductBySkuAsync(form.Sku);
             if (productDto != null)
@@ -75,6 +130,7 @@ namespace OutronicShop.Backend.API.Controllers
             await _productDao.DeleteByIdAsync(productDto.Id);
             return Ok("Product has been deleted");
         }
+
         
         [HttpGet("count")]
         public async Task<ActionResult<CountModel>> CountProductsAsync()

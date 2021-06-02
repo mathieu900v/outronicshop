@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OutronicShop.Backend.Database.Context;
 using OutronicShop.Backend.Database.Generic;
 using OutronicShop.Backend.Domain.Product;
+using OutronicShop.Backend.Models.Enums;
+using OutronicShop.Backend.Models.Product;
 
 namespace OutronicShop.Backend.Database.Product
 {
@@ -41,6 +44,44 @@ namespace OutronicShop.Backend.Database.Product
                 await using WebContext context = _context.CreateDbContext();
                 var tmp = await context.Products.FirstOrDefaultAsync(x => x.Sku.ToLower().Equals(sku.ToLower()));
                 return _mapper.Map(tmp);
+            }
+            catch (Exception e)
+            {
+                _logger.LogDebug($"[GetProductBySkuAsync] {e.Message}");
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<ProductDto>> GetProductsByQueryAsync(ProductRequestQuery query)
+        {
+            try
+            {
+                await using WebContext context = _context.CreateDbContext();
+                IQueryable<ProductEntity> highlightedQuery = context.Products.Where(x => x.Highlighted == query.IsHighlighted);
+                List<ProductEntity> result = new();
+                switch (query.SearchType)
+                {
+                    case ProductSearchType.Category:
+                    {
+                        result = await highlightedQuery.Where(x => x.CategoryId == query.CategoryId).ToListAsync();
+                        break;
+                    }
+                    case ProductSearchType.Brand:
+                    {
+                        result = await highlightedQuery.Where(x => x.BrandId == query.BrandId).ToListAsync();
+                        break;
+                    }
+                    case ProductSearchType.PlainText:
+                    {
+                        var searchLowered = query.Search.ToLowerInvariant();
+                        var sku = highlightedQuery.Where(x => x.Sku.ToLower().Contains(searchLowered));
+                        var title = highlightedQuery.Where(x => x.Title.ToLower().Contains(searchLowered));
+                        result = await sku.Union(title).ToListAsync();
+                        break;
+                    }
+                }
+
+                return _mapper.Map(result);
             }
             catch (Exception e)
             {

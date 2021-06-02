@@ -6,7 +6,13 @@ const ApiClient = {
   createDefaultGetRequest: async (url, data) => {
     try {
       let query = new URLSearchParams(data);
-      let fullUrl = `${url}?${query}`;
+      let fullUrl;
+      if(data === null) {
+        fullUrl = `${url}`;
+      }
+      else {
+        fullUrl = `${url}?${query}`;
+      }
       console.log(`[API] GET: ${fullUrl}`);
       let response = await fetch(fullUrl, {
         method: 'GET',
@@ -75,7 +81,7 @@ const ApiClient = {
    * @returns {Response} api response
    */
   getBrandsAsync: async () => {
-  let data = {};
+  let data = null;
   return await ApiClient.createDefaultGetRequest(`${baseUrl}/brands`, data);
   },
   /**
@@ -138,6 +144,7 @@ const ApiClient = {
     }
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/categories`, data);
     },
+    
       /**
    * Delete category by id
    * @param {uuid} id
@@ -192,9 +199,21 @@ const ApiClient = {
    * @returns {Response} api response
    */
      getProductsAsync: async () => {
-      let data = {};
+      let data = null;
       return await ApiClient.createDefaultGetRequest(`${baseUrl}/products`, data);
       },
+
+    /**
+   * Get all the products by a category from the api
+   * @returns {Response} api response
+   */
+   getProductsByCategoryAsync: async (searchType, categoryId) => {
+    let data = {
+        searchType: searchType ?? 0,
+        categoryId: categoryId ?? defaultUuid,
+    }
+    return await ApiClient.createDefaultGetRequest(`${baseUrl}/products`, data);
+    },
       /**
        * Delete all brand by id
        * @param {uuid} id

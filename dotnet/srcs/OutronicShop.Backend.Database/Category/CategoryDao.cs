@@ -50,6 +50,7 @@ namespace OutronicShop.Backend.Database.Category
                 return null;
             }
         }
+        
 
         //Queries Sort
         public async Task<IEnumerable<CategoryDto>> GetAllCategoriesByQueriesAsync(CategoryRequestQuery query)

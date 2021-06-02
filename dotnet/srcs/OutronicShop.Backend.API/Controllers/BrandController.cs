@@ -32,6 +32,10 @@ namespace OutronicShop.Backend.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<BrandDto>> CreateBrandAsync([FromBody] BrandCreationForm form)
         {
+            if (string.IsNullOrWhiteSpace(form.Name) || string.IsNullOrWhiteSpace(form.ImgUrl))
+            {
+                return BadRequest("Fields can't be empty");
+            }
             BrandDto brandDto = await _brandDao.GetBrandByNameAsync(form.Name);
             if (brandDto != null)
             {

@@ -29,7 +29,6 @@ export default function dataCategory({data, closeEvent, categories}){
             return;
         }
         if(isNew){
-            console.log(`title: ${title}\ndesc: ${description}\nidParent: ${idParent}`);
             let res = await ApiClient.createCategoryAsync({
                 title: title,
                 description: description,
@@ -68,7 +67,7 @@ export default function dataCategory({data, closeEvent, categories}){
                     <div className="flex flex-row">
                         <div className="flex w-1/2">
                             <div className="w-full px-3 mb-2">
-                                <label for="" className="text-xs font-semibold px-1">Category Title</label>
+                                <label for="" className="text-xs font-semibold px-1">Category Title<span className="text-sm text-red-500 font-bold">*</span></label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faTags} /></div>
                                     <input type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.title : "Category title"} defaultValue={isNew ? "" : data.title} onChange={e => setTitle(e.target.value)}/>
@@ -77,7 +76,7 @@ export default function dataCategory({data, closeEvent, categories}){
                         </div>
                         <div className="flex w-1/2">
                             <div className="w-full px-3 mb-2">
-                                <label for="" className="text-xs font-semibold px-1">Parent Category</label>
+                                <label for="" className="text-xs font-semibold px-1">Parent Category<span className="text-sm text-red-500 font-bold">*</span></label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faDatabase} /></div>
                                     <select onChange={e => setIdParent(e.target.value)} className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500">
@@ -91,7 +90,7 @@ export default function dataCategory({data, closeEvent, categories}){
                         </div>
                     </div>
                     <div className="w-full px-3 mb-5">
-                        <label for="" className="text-xs font-semibold px-1">Description</label>
+                        <label for="" className="text-xs font-semibold px-1">Description<span className="text-sm text-red-500 font-bold">*</span></label>
                         <div className="flex">
                             <textarea rows="6" className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.description : "Category description"} defaultValue={isNew ? "" : data.description} onChange={e => setDescription(e.target.value)}/>
                         </div>

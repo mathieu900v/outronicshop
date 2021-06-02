@@ -61,7 +61,7 @@ export default function dataBrand({data, closeEvent}){
                     <div>
                         <div className="flex -mx-3">
                             <div className="w-full px-3 mb-5">
-                                <label for="" className="text-xs font-semibold px-1">Brand Name</label>
+                                <label for="" className="text-xs font-semibold px-1">Brand Name<span className="text-sm text-red-500 font-bold">*</span></label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faTags} /></div>
                                     <input name="name" type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.name : "Brand name"} defaultValue={isNew ? "" : data.name} onChange={e => setName(e.target.value)}/>
@@ -70,7 +70,7 @@ export default function dataBrand({data, closeEvent}){
                         </div>
                         <div className="flex -mx-3">
                             <div className="w-full px-3 mb-5">
-                                <label for="" className="text-xs font-semibold px-1">Image Url</label>
+                                <label for="" className="text-xs font-semibold px-1">Image Url<span className="text-sm text-red-500 font-bold">*</span></label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faLink} /></div>
                                     <input name="imgUrl" type="url" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.imgUrl : "Brand image url"} defaultValue={isNew ? "" : data.imgUrl} onChange={e => setImgUrl(e.target.value)}/>

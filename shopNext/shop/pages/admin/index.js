@@ -4,7 +4,7 @@ import ApiClient from '../modules/api/client-api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
 
-export default function AdminHomePage({ brandsCount, categoriesCount, productsCount, carriersCount }) {
+export default function AdminDefaultPage({ brandsCount, categoriesCount, productsCount, carriersCount }) {
 
     return(<section className="text-gray-600 body-font">
     <div className="container px-5 py-16 mx-auto">
@@ -41,7 +41,7 @@ export default function AdminHomePage({ brandsCount, categoriesCount, productsCo
   </section>);
 }
 
-AdminHomePage.Layout = AdminLayout;
+AdminDefaultPage.Layout = AdminLayout;
 
 export async function getStaticProps() {
   const brandsCount = await ApiClient.countBrandsAsync();

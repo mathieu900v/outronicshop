@@ -104,8 +104,8 @@ export default function dataProduct({data, closeEvent, brands, categories}){
         
     }
 
-    var str2bool = (value) => {
-        if (value && typeof value === "string") {
+    var str2bool = (value) => {                     //A REVOIR AVEC Highlighted
+        if (typeof value === "string") {
              if (value.toLowerCase() === "true") return true;
              if (value.toLowerCase() === "false") return false;
         }
@@ -127,16 +127,16 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                         <div className="flex flex-row">
                             <div className="flex -mx-3">
                                 <div className="w-full px-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">SKU</label>
+                                    <label for="" className="text-xs font-semibold px-1">SKU<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faHashtag} /></div>
-                                        <input type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.sku : "N°"} defaultValue={isNew ? "" : data.sku} onChange={e => setSku(e.target.value)}/>
+                                        <input type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.sku : "00-0000"} defaultValue={isNew ? "" : data.sku} onChange={e => setSku(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex flex-grow">
                                 <div className="w-full px-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">Title</label>
+                                    <label for="" className="text-xs font-semibold px-1">Title<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faTag} /></div>
                                         <input type="text" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.title : "Title"} defaultValue={isNew ? "" : data.title} onChange={e => setTitle(e.target.value)}/>
@@ -145,7 +145,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                             </div>
                             <div className="flex">
                                 <div className="w-full pr-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">Price</label>
+                                    <label for="" className="text-xs font-semibold px-1">Price<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faCoins} /></div>
                                         <input type="number" min="0.00" step="0.01" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.price : "Price"} defaultValue={isNew ? "" : data.price} onChange={e => setPrice(e.target.value)}/>
@@ -157,7 +157,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                         <div className="flex flex-row">
                             <div className="flex w-1/3">
                                 <div className="w-full pr-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">Brand</label>
+                                    <label for="" className="text-xs font-semibold px-1">Brand<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faCopyright} /></div>
                                         <select onChange={e => setBrandId(e.target.value)} className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500">
@@ -171,7 +171,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                             </div>
                             <div className="flex w-1/3">
                                 <div className="w-full pr-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">Category</label>
+                                    <label for="" className="text-xs font-semibold px-1">Category<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faStream} /></div>
                                         <select onChange={e => setCategoryId(e.target.value)} className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500">
@@ -185,7 +185,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                             </div>
                             <div className="flex w-1/3">
                                 <div className="w-full pr-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">Images</label>
+                                    <label for="" className="text-xs font-semibold px-1">Images<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faLink} /></div>
                                         <input type="url" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.imgUrl : "Image urls separated with ,"} defaultValue={isNew ? "" : data.imgUrl} onChange={e => setImgUrl(e.target.value)}/>
@@ -197,7 +197,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                         <div className="flex flex-row">
                             <div className="flex w-1/3">
                                 <div className="w-full pr-3 mb-2">
-                                    <label for="" className="text-xs font-semibold px-1">Weight</label>
+                                    <label for="" className="text-xs font-semibold px-1">Weight<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><FontAwesomeIcon icon={Icons.faWeightHanging} /></div>
                                         <input type="number" className="w-full -ml-10 pl-9 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.weight : "Weight (g)"} defaultValue={isNew ? "" : data.weight} onChange={e => setWeight(e.target.value)}/>
@@ -217,7 +217,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                                 <div className="w-full pr-3 mb-2">
                                     <label for="" className="text-xs font-semibold">Highlighted</label>
                                     <div className="flex">
-                                        <input type="checkbox" className="cursor-pointer border-2 border-gray-200 outline-none focus:border-purple-500 form-checkbox rounded-md h-10 w-10 text-purple-500" onChange={e => setHighlighted(str2bool(e.target.value))}/>
+                                        <input type="checkbox" className="cursor-pointer border-2 border-gray-200 outline-none focus:border-purple-500 form-checkbox rounded-md h-10 w-10 text-purple-500" onChange={e => {setHighlighted(e.target.checked); console.log(highlighted)} }/>
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +227,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                         <div className="flex flex-row">
                             <div className="flex w-1/2">
                                 <div className="w-full pr-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">Features</label>
+                                    <label for="" className="text-xs font-semibold px-1">Features<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <textarea rows="4" className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.features : "Product features"} defaultValue={isNew ? "" : data.features} onChange={e => setFeatures(e.target.value)}/>
                                     </div>
@@ -235,7 +235,7 @@ export default function dataProduct({data, closeEvent, brands, categories}){
                             </div>
                             <div className="flex w-1/2">
                                 <div className="w-full pr-3 mb-3">
-                                    <label for="" className="text-xs font-semibold px-1">Description</label>
+                                    <label for="" className="text-xs font-semibold px-1">Description<span className="text-sm text-red-500 font-bold">*</span></label>
                                     <div className="flex">
                                         <textarea rows="4" className="w-full px-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" placeholder={!isNew ? data.description : "Product description"} defaultValue={isNew ? "" : data.description} onChange={e => setDescription(e.target.value)}/>
                                     </div>

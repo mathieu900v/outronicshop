@@ -19,7 +19,7 @@ export default function CategoriesPage({ initCategories }) {
     const[currentState, setCurrentState] = useState(states.LIST);
     const router = useRouter();
     const [isRefreshing, setIsRefreshing] = useState(false);
-    const Spinner = () => <img src="/icons/spinner.svg" className="fixed bottom-4 left-64"/>;
+    const Spinner = () => <img src="/spinner.svg" className="fixed bottom-4 left-64"/>;
 
     useEffect(() => {
         setIsRefreshing(false);

@@ -118,6 +118,8 @@
 -   Réunion 14h
 -   Reprise de l'organisation des Listes et Formulaires : La page Index de chaque route doit avoir 3 états : List, FormCreate et FormUpdate
 
+---
+
 ### Lundi 10/05
 
 -   Au final il y aura 3 états : List, Form et Loading. le component Form reçoit des données d'édition si il y en a, sinon il considère une création. Le fait d'avoir un Loading permet un retour visuel sans clignotement lors de la suppression.
@@ -131,6 +133,8 @@
 
 -   Début de la refonte du Form Product et de la liste associée
 -   Liste et Index pour Products optimisés (Comme pour Brand et Category)
+
+---
 
 ### Lundi 17/05
 
@@ -152,4 +156,45 @@
 ### Jeudi 20/05
 
 -   BackEnd pour Carriers fait avec les 5 : List, Create, Delete, Count et Update
+
+### Vendredi 21/05
+
+-   Carriers fonctionnel, j'ai effectué des tests sur toutes les routes pour revérifier les champs obligatoires etc : En gros optimisation Backend pour ne pas autoriser des données non voulues
 -   Champ recherche dans la listCategory (Gestion d'un isOrder et champ search BackEnd)
+
+---
+
+### Mardi 25/05
+
+-   Site public avec une liste de produits et un aperçus à travailler
+-   Réunion 14h
+
+### Mercredi 26/05
+
+-   Correction de bugs et ajouts : Champs obligatoires notés, SKU en 00-000 ou 00-0000, Highlighted à revoir
+-   Page d'accueil : Ajout de la TopBar
+
+### Jeudi 27/05
+
+-   Page d'accueil : Ajout de la NavBar
+-   Difficultés sur le routage : Comment affecter des components à plusieurs routes ?
+
+### Vendredi 28/05
+
+-   Fonctionnement de la topBar avec propriété Link de Next JS, affectation des routes (paths dans getStaticPaths)
+-   Tests sur Title.js dans les catégories pour comprendre le routeur Next et s'en servir
+
+### Lundi 31/05
+
+-   Toute la gestion des queries pour Product en Back-end : trouver les produits d'une catégorie, d'une marque, d'une recherche dans le title ou le sku et aussi obtenir les Highlighted
+
+### Mardi 01/06
+
+-   Gestion des pages /categories/\* pour avoir toutes les produits des catégories affichées
+-   Quelques difficultés à comprendre Next et l'usage de GetStaticPaths et GetStaticProps mais le résultat est plutôt concluant
+
+Liste de bugs connus ou features manquantes :
+
+Bug à l'affichage parfois et au refresh des catégories
+Affichage produits par marques
+Superadmin

@@ -27,6 +27,7 @@ namespace OutronicShop.Backend.Models.Product
     {
         public string Sku { get; set; }
     }
+
     public class ProductUpdateForm
     {
         public Guid Id { get; set; }

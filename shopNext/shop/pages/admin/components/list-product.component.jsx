@@ -26,7 +26,7 @@ export default function listProduct({products, toggleFormEvent, refreshData}) {
                                 <h2 className="text-purple-800 title-font text-lg font-medium">{product.title}</h2>
                                 <p className="mt-1">#{product.sku}</p>
                             </div>
-                            <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{product.description}</h3>
+                            <h3 className="text-gray-500 text-xs title-font mb-1 truncate">{product.description}</h3>
                             <div className="flex flex-row justify-between">
                                 <p className="mt-1 font-semibold text-lg">{product.price.toLocaleString()} €</p>
                                 <div className="flex flex-row">
