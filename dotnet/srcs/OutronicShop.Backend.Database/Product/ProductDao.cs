@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using OutronicShop.Backend.Database.Context;
 using OutronicShop.Backend.Database.Generic;
 using OutronicShop.Backend.Domain.Product;
-using OutronicShop.Backend.Models.Enums;
 using OutronicShop.Backend.Models.Product;
 
 namespace OutronicShop.Backend.Database.Product
@@ -59,33 +58,64 @@ namespace OutronicShop.Backend.Database.Product
                 await using WebContext context = _context.CreateDbContext();
                 IQueryable<ProductEntity> highlightedQuery = context.Products.Where(x => x.Highlighted == query.IsHighlighted);
                 List<ProductEntity> result = new();
-                switch (query.SearchType)
+                List<ProductEntity> category = new();
+                List<ProductEntity> brand = new();
+                List<ProductEntity> search = new();
+                if (query.CategoryId != null)
                 {
-                    case ProductSearchType.Category:
-                    {
-                        result = await highlightedQuery.Where(x => x.CategoryId == query.CategoryId).ToListAsync();
-                        break;
-                    }
-                    case ProductSearchType.Brand:
-                    {
-                        result = await highlightedQuery.Where(x => x.BrandId == query.BrandId).ToListAsync();
-                        break;
-                    }
-                    case ProductSearchType.PlainText:
-                    {
-                        var searchLowered = query.Search.ToLowerInvariant();
-                        var sku = highlightedQuery.Where(x => x.Sku.ToLower().Contains(searchLowered));
-                        var title = highlightedQuery.Where(x => x.Title.ToLower().Contains(searchLowered));
-                        result = await sku.Union(title).ToListAsync();
-                        break;
-                    }
+                    category = await highlightedQuery.Where(x => x.CategoryId == query.CategoryId).ToListAsync();
                 }
 
+                if (query.BrandId != null)
+                {
+                    brand = await highlightedQuery.Where(x => x.BrandId == query.BrandId).ToListAsync();
+                }
+
+                if (query.Search != null)
+                {
+                    var searchLowered = query.Search.ToLowerInvariant();
+                    var sku = highlightedQuery.Where(x => x.Sku.ToLower().Contains(searchLowered));
+                    var title = highlightedQuery.Where(x => x.Title.ToLower().Contains(searchLowered));
+                    search = await sku.Union(title).ToListAsync();
+                }
+                // DOUBLE
+                if (query.Search == null && query.CategoryId != null && query.BrandId != null)
+                {
+                    result = brand.Intersect(category).ToList();
+                }
+                if (query.CategoryId == null && query.BrandId != null && query.Search != null)
+                {
+                    result = brand.Intersect(search).ToList();
+                }
+                if (query.BrandId == null && query.CategoryId != null && query.Search != null)
+                {
+                    result = category.Intersect(search).ToList();
+                }
+                // SIMPLE
+                if (query.BrandId == null && query.CategoryId == null && query.Search != null)
+                {
+                    result = search.ToList();
+                }
+                if (query.BrandId == null && query.CategoryId != null && query.Search == null)
+                {
+                    result = category.ToList();
+                }
+                if (query.BrandId != null && query.CategoryId == null && query.Search == null)
+                {
+                    result = brand.ToList();
+                }
+                // TRIPLE
+                if (query.BrandId != null && query.CategoryId != null && query.Search != null)
+                {
+                    result = search.Union(brand).Intersect(category).ToList();
+                }
+
+                
                 return _mapper.Map(result);
             }
             catch (Exception e)
             {
-                _logger.LogDebug($"[GetProductBySkuAsync] {e.Message}");
+                _logger.LogDebug($"[GetProductsByAsync] {e.Message}");
                 return null;
             }
         }

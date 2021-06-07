@@ -11,7 +11,6 @@ using OutronicShop.Backend.Database.Product;
 using OutronicShop.Backend.Domain.Brand;
 using OutronicShop.Backend.Domain.Category;
 using OutronicShop.Backend.Domain.Product;
-using OutronicShop.Backend.Models.Enums;
 using OutronicShop.Backend.Models.Generic;
 using OutronicShop.Backend.Models.Product;
 
@@ -38,8 +37,10 @@ namespace OutronicShop.Backend.API.Controllers
             {
                 return Ok(await _productDao.GetAllAsync());
             }
+            return Ok(await _productDao.GetProductsByQueryAsync(query));
 
-            switch (query.SearchType)
+
+            /*switch (query.SearchType)
             {
                 case ProductSearchType.Category:
                 {
@@ -77,9 +78,7 @@ namespace OutronicShop.Backend.API.Controllers
                     }
                     break;
                 }
-            }
-
-            return Ok(await _productDao.GetProductsByQueryAsync(query));
+            }*/
         }
         [HttpPost("create")]
         [ProducesResponseType(StatusCodes.Status201Created)]

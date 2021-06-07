@@ -139,7 +139,8 @@ const ApiClient = {
     if(query) {
       data = {
         search: query.search ?? "",
-        isOrdered: query.isOrdered ?? false
+        isOrdered: query.isOrdered ?? false,
+        strict: query.strict ?? false
       };
     }
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/categories`, data);
@@ -207,9 +208,8 @@ const ApiClient = {
    * Get all the products by a category from the api
    * @returns {Response} api response
    */
-   getProductsByCategoryAsync: async (searchType, categoryId) => {
+   getProductsByCategoryAsync: async (categoryId) => {
     let data = {
-        searchType: searchType ?? 0,
         categoryId: categoryId ?? defaultUuid,
     }
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/products`, data);
@@ -260,6 +260,22 @@ const ApiClient = {
     let data = {};
     return await ApiClient.createDefaultGetRequest(`${baseUrl}/carriers/count`, data, true);
   },
+    /**
+   * Get all the carriers from the api
+   * @returns {Response} api response
+   */
+     getCarriersAsync: async () => {
+      let data = null;
+      return await ApiClient.createDefaultGetRequest(`${baseUrl}/carriers`, data);
+      },
+    /**
+    * Delete carrier by id
+    * @param {uuid} id
+    * @returns {Response} api response
+    */
+    deleteCarrierByIdAsync: async (id, asJson) => {    
+      return await ApiClient.createDefaultPostRequest(`${baseUrl}/carriers/delete`, {id}, asJson);
+    },
 
 }
 

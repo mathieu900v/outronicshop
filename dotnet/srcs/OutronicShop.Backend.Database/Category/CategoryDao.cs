@@ -65,8 +65,17 @@ namespace OutronicShop.Backend.Database.Category
                 }
                 else
                 {
-                    tmp = await context.Categories.Where(x =>
-                        x.Title.ToLower().Contains(query.Search.ToLower())).ToListAsync();
+                    if (query.Strict)
+                    {
+                        tmp = await context.Categories.Where(x =>
+                            x.Title.ToLower().Equals(query.Search.ToLower())).ToListAsync();
+                    }
+                    else
+                    {
+                        tmp = await context.Categories.Where(x =>
+                            x.Title.ToLower().Contains(query.Search.ToLower())).ToListAsync();
+                    }
+                    
                 }
                 return _mapper.Map(query.IsOrdered ? tmp.AsQueryable().OrderBy(x => x.Title) : tmp);
             }

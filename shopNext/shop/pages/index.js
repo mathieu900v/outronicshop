@@ -16,26 +16,15 @@ export default function DefaultPage({ initProducts, initBrands, initCategories }
     }
     const[currentProduct, setCurrentProduct] = useState();
     const[currentState, setCurrentState] = useState(states.LIST);
-    const[currentCategory, setCurrentCategory] = useState(initCategories[-1]);
     const router = useRouter();
     const [isRefreshing, setIsRefreshing] = useState(false);
     const Spinner = () => <img src="/spinner.svg" className="fixed bottom-4 left-4"/>;
-    const[currentProducts, setCurrentProducts] = useState(initProducts);
 
-    /*useEffect(async () => {
+    useEffect(async () => {
         setIsRefreshing(false);
     }, [initProducts,
         initBrands,
-        initCategories]);*/
-
-    useEffect(async () => {
-        setIsRefreshing(true);
-        if(currentCategory != initCategories[-1])
-        {
-            setCurrentProducts(await ApiClient.getProductsByCategoryAsync(0, currentCategory.id))
-        }
-        setIsRefreshing(false);
-    }, [currentCategory]);
+        initCategories]);
 
     function refreshData () {
         router.replace(router.asPath);
@@ -51,19 +40,18 @@ export default function DefaultPage({ initProducts, initBrands, initCategories }
         setCurrentProduct(null);
         refreshData();
     }
-
     switch(currentState) {
       case states.LIST:
           return(
           <>
-              <NavBar categories={initCategories} setCurrentCategory={setCurrentCategory}/>
-              <ListProduct currentProducts={currentProducts ?? initProducts} toggleProductEvent={toggleProduct} refreshData={refreshData}/>
+              <NavBar categories={initCategories}/>
+              <ListProduct currentProducts={initProducts} toggleProductEvent={toggleProduct} refreshData={refreshData}/>
               {isRefreshing ? <Spinner/> : ""}
           </>
           );
       case states.PRODUCT:
           return(<>
-                <PreviewProduct data={currentProduct} brands={initBrands} categories={initCategories} closeEvent={closeProduct}/>
+                <PreviewProduct data={currentProduct} brands={initBrands} categories={initCategories} closeEvent={closeProduct}/> {/* A REFAIRE*/}
           </>);
   }
 }

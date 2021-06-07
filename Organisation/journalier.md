@@ -184,6 +184,8 @@
 -   Fonctionnement de la topBar avec propriété Link de Next JS, affectation des routes (paths dans getStaticPaths)
 -   Tests sur Title.js dans les catégories pour comprendre le routeur Next et s'en servir
 
+---
+
 ### Lundi 31/05
 
 -   Toute la gestion des queries pour Product en Back-end : trouver les produits d'une catégorie, d'une marque, d'une recherche dans le title ou le sku et aussi obtenir les Highlighted
@@ -191,10 +193,31 @@
 ### Mardi 01/06
 
 -   Gestion des pages /categories/\* pour avoir toutes les produits des catégories affichées
--   Quelques difficultés à comprendre Next et l'usage de GetStaticPaths et GetStaticProps mais le résultat est plutôt concluant
+-   Quelques difficultés à comprendre Next et l'usage de GetStaticPaths et GetStaticProps
+
+### Mercredi 02/06
+
+-   Réunion 14h
+-   Résolutions de bugs sur la partie admin, vérification complète du code et suppression de redondances
+
+### Jeudi 03/06
+
+-   Améliorations sur les routes des catégories, elles s'affichent maintenant comme voulu (les routes catégories affiche les produits correspondant, sans savoir d'où elle est appellée)
+-   Pas mal de changements correspondants, avec les queries qui son,t mieux gérées également et qui "S'Intersectent". Par exemple si l'on cherche les produits d'une catégorie, d'une brand et qui contiennent une lettre, on trouve ce produit. On peut avoir 1, 2 ou les 3 champs de recherche.
+
+### Vendredi 04/06
+
+-   Encore des petites améliorations pour éviter de faire trop de requêtes à la DB et au backend pour les recherches
+-   Front-End de carriers dans le coté admin, on peut les afficher et les supprimer pour l'instant
+
+---
+
+### Lundi 07/06
+
+-   Réunion 14h avec M.Krähenbühl et M.Gossa
 
 Liste de bugs connus ou features manquantes :
 
-Bug à l'affichage parfois et au refresh des catégories
+Bug searchbar admin qui ne refresh pas
 Affichage produits par marques
 Superadmin

@@ -4,7 +4,7 @@ import ApiClient from '../../modules/api/client-api'
 import AddButton from './add-button.component'
 import { NIL, NIL as NIL_UUID } from 'uuid';
 
-export default function listProduct({products, toggleFormEvent, refreshData}) {
+export default function ListProduct({products, toggleFormEvent, refreshData}) {
 
     async function deleteProductBySku(sku){
         const res = await ApiClient.deleteProductBySkuAsync(sku);
