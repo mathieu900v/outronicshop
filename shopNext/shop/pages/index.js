@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import ListProduct from './components/list-product.component'
 import PreviewProduct from './components/preview-product.component'
 import NavBar from './components/navBar.component'
+import ReturnButton from './components/return-button.component'
 import Image from 'next/image'
 
 export default function DefaultPage({ initProducts, initBrands, initCategories }) {
@@ -38,7 +39,6 @@ export default function DefaultPage({ initProducts, initBrands, initCategories }
     function closeProduct() {
         setCurrentState(states.LIST);
         setCurrentProduct(null);
-        refreshData();
     }
     switch(currentState) {
       case states.LIST:
@@ -51,7 +51,8 @@ export default function DefaultPage({ initProducts, initBrands, initCategories }
           );
       case states.PRODUCT:
           return(<>
-                <PreviewProduct data={currentProduct} brands={initBrands} categories={initCategories} closeEvent={closeProduct}/> {/* A REFAIRE*/}
+                <PreviewProduct data={currentProduct} brands={initBrands} categories={initCategories}/>
+                <ReturnButton event={closeProduct}/>
           </>);
   }
 }

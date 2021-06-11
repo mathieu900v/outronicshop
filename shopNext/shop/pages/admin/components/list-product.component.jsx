@@ -17,9 +17,9 @@ export default function ListProduct({products, toggleFormEvent, refreshData}) {
         <section className="text-gray-600 body-font">
             <div className="container px-5 pt-8 mx-auto">
                 <div className="flex flex-wrap -m-4">
-                    {products.map((product) => (<div className="cursor-pointer lg:w-1/4 md:w-1/2 p-4 w-full border-2 border-transparent rounded-lg hover:border-purple-500 hover:bg-gray-50">
+                    {products.map((product) => (<div key={product.sku} className="cursor-pointer lg:w-1/4 md:w-1/2 p-4 w-full border-2 border-transparent rounded-lg hover:border-purple-500 hover:bg-gray-50">
                         <a className="block relative h-48 rounded overflow-hidden">
-                        <img alt="product-image" class="object-cover object-center w-full h-full block" src={product.imgUrl}/>
+                        <img alt="product-image" className="object-cover object-center w-full h-full block" src={product.imgUrl}/>
                         </a>
                         <div className="mt-4">
                             <div className="flex flex-row justify-between">

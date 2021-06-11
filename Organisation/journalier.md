@@ -214,10 +214,29 @@
 
 ### Lundi 07/06
 
+-   Avancée sur le rapport de stage
 -   Réunion 14h avec M.Krähenbühl et M.Gossa
+
+### Mardi 08/06
+
+-   Component ListProduct remanié, on affiche maintenant un maximum de données dans le component du produit
+-   Cliquer sur la catégorie de ce produit emmène à la route de la catégorie en question
+
+### Mercredi 09/06
+
+-   Remaniement du PreviewProduct, il est plus clair, détaillé et il a presques toutes les informations de l'article.
+-   On peut aussi cliquer sur la catégorie dans la preview de l'article
+
+### Jeudi 10/06
+
+-   BackEnd du Cart rattaché à un User. On peux y ajouter un produit à la fois avec une quantité personnalisée.
+-   Query pour voir ce qu'il y a dans le panier
+
+### Vendredi 11/06
+
+-   Réunion 11h
 
 Liste de bugs connus ou features manquantes :
 
 Bug searchbar admin qui ne refresh pas
 Affichage produits par marques
-Superadmin

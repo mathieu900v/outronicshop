@@ -14,11 +14,13 @@ using Microsoft.OpenApi.Models;
 using OutronicShop.Backend.API.Extensions;
 using OutronicShop.Backend.Database.Brand;
 using OutronicShop.Backend.Database.Carrier;
+using OutronicShop.Backend.Database.Cart;
 using OutronicShop.Backend.Database.Category;
 using OutronicShop.Backend.Database.Context;
 using OutronicShop.Backend.Database.Product;
 using OutronicShop.Backend.Domain.Brand;
 using OutronicShop.Backend.Domain.Carrier;
+using OutronicShop.Backend.Domain.Cart;
 using OutronicShop.Backend.Domain.Category;
 using OutronicShop.Backend.Domain.Product;
 
@@ -75,6 +77,12 @@ namespace OutronicShop.Backend.API
              */
             services.TryAddMappedAsyncUuidRepository<CarrierEntity, CarrierDto>();
             services.AddTransient<ICarrierDao, CarrierDao>();
+            
+            /*
+             * Register Cart
+             */
+            services.TryAddMappedAsyncUuidRepository<CartEntity, CartDto>();
+            services.AddTransient<ICartDao, CartDao>();
             
             //SwaggerGen
             services.AddSwaggerGen(c =>

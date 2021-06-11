@@ -24,8 +24,13 @@ export default function topBar({searchEvent}) {
                 <div className="flex justify-end items-center relative">
                     <div className="flex mr-4 items-center">
                         <a className="inline-block py-1 px-2 hover:border-purple-500 border-b-2 border-purple-300" href="/admin/">
-                        <div className="flex items-center relative cursor-pointer whitespace-nowrap">Se connecter</div>
+                            <div className="flex items-center relative cursor-pointer whitespace-nowrap">Se connecter</div>
                         </a>
+                        <div className="inline-block pl-4">
+                            <a href="/cart/" className="text-2xl cursor-pointer whitespace-nowrap text-purple-500 hover:text-purple-800">
+                                <FontAwesomeIcon icon={Icons.faShoppingCart} />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

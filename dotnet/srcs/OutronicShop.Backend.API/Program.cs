@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OutronicShop.Backend.Database.Context;
+using OutronicShop.Backend.Database.Utils;
 
 namespace OutronicShop.Backend.API
 {
@@ -17,6 +18,7 @@ namespace OutronicShop.Backend.API
     {
         public static async Task Main(string[] args)
         {
+            MapsterConfiguration.InitMappingConfiguration();
             IHost web = CreateHostBuilder(args).Build();
             var tmp = web.Services.GetRequiredService<DatabaseConfiguration>();
             

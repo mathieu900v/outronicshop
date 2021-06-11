@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ListProduct from '../components/list-product.component';
 import NavBar from '../components/navBar.component';
-import DefaultPage from '../index'
 import UserLayout from '../layouts/user.layout';
 import ApiClient from '../modules/api/client-api';
 
